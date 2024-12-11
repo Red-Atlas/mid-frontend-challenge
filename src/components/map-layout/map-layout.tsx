@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
-import './map-layout.css'; 
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { useEffect, useRef, useState } from 'react';
+import './map-layout.css';
 
+import { useSelector } from 'react-redux';
 import SnackbarComponent from '../../components/snackbar/snackbar';
-import SnacbkarProps from '../../interfaces/snackbar.interface';
-import { getProperties } from '../../services/properties.service';
 import { Property } from '../../interfaces/properties.interface';
+import SnacbkarProps from '../../interfaces/snackbar.interface';
+import { RootState } from '../../store';
 
 
 
@@ -21,6 +22,8 @@ function MapLayout() {
   });
   const [propertiesData, setProperties] = useState<Property[]>();
   const [mapInstance, setMapInstance] = useState<mapboxgl.Map>();
+  const { property } = useSelector((state: RootState) => state.properties);
+  const [markers, setMarkers] = useState<mapboxgl.Marker[]>([]);
 
   if (process.env.REACT_APP_MAPBOX_TOKEN) {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN
@@ -48,34 +51,29 @@ function MapLayout() {
 
     return () => map.remove();
   }, []);
- 
+
   useEffect(() => {
-    if (mapInstance) {
+    if (mapInstance && property) {
       getPropertiesService();
     }
-  }, [mapInstance]);
+  }, [mapInstance, property]);
 
-  const getPropertiesService = async () => {
-    try {
-      const data = await getProperties();
-      setProperties(data);
-      console.log(mapInstance)
-      if (!mapInstance) {
-        console.error('El mapa no está inicializado.');
-        return;
-      }
+  const getPropertiesService = () => {
 
-      data.forEach((property) => {
-        console.log(property.address)
-        console.log(property.location)
-        new mapboxgl.Marker({ color: 'red' })
-          .setLngLat([property.location.lng, property.location.lat])
-          .addTo(mapInstance);
-      });
-    } catch (error: any) {
-      console.log(error)
-    }
-  }; 
+    markers.forEach((marker) => marker.remove());
+    setMarkers([]);
+    const newMarkers: mapboxgl.Marker[] = [];
+
+    property.forEach((property) => {
+      const marker = new mapboxgl.Marker({ color: 'red' })
+        .setLngLat([property.location.lng, property.location.lat])
+        .addTo(mapInstance!);
+
+      newMarkers.push(marker);
+    });
+
+    setMarkers(newMarkers);
+  };
 
 
 

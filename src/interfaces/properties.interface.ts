@@ -25,3 +25,7 @@
     name: string
     contact: string
   }
+
+  export interface PropertyStatusInterface {
+    property: Property[];
+  }
