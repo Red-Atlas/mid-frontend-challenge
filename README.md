@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Front-End Challenge - Mid-Level 🚀
 
 ## Descripción
@@ -139,5 +140,3 @@ El archivo se encuentra disponible en este repositorio bajo el nombre `propertie
 ---
 
 ### 🚀 ¡Buena suerte!
-
-Si tienes dudas, no dudes en preguntar. 😊
