@@ -1,0 +1,77 @@
+
+.buttons-dialog{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.button-cancel{
+    all: initial;
+    border-radius: 5px;
+    background-color: none;
+    border: 1px solid #3a3a3a;
+    padding: 10px;
+    color: #3a3a3a;;
+    font-family: 'AvenirNext';
+    width: 125px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button-apply{
+    all: initial;
+    border-radius: 5px;
+    background-color: #f60a0f;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-family: 'AvenirNext';
+    width: 125px;
+    cursor: pointer;
+}
+
+.flex-filters-dialog{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
+.width-selector{
+    width: 200px;
+}
+
+.flex-selects-dialog{
+    display: flex;
+    gap: 20px;
+}
+
+.tags-filter {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    background-color: white !important;
+    border: 1px solid #3a3a3a;
+    color: #3a3a3a;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 15px;
+    text-transform: uppercase;
+}
+
+.tag.tipo {
+    background-color: #ff5722;
+}
+
+.tag.estado {
+    background-color: #4caf50;
+}
+
+.tag.disponibilidad {
+    background-color: #2196f3;
+}
