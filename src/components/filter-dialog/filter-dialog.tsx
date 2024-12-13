@@ -54,7 +54,6 @@ function FilterDialog({ open, onClose, onApplyFilters }: FilterDialogProps) {
       areaMin: valueAreaMin,
       areaMax: valueAreaMax,
     });
-    console.log(activeTagsType)
     onClose();
   };
 

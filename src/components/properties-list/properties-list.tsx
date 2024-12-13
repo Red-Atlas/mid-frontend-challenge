@@ -119,6 +119,7 @@ const PropertiesList = () => {
   };
 
   const handleApplyFilters = (newFilters: filterDialogs) => {
+    console.log(newFilters)
     setNumberPage(1);
     if (newFilters.status.length === 0 && newFilters.type.length === 0) {
       setIsFiltering(false);

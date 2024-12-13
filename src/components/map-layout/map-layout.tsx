@@ -46,8 +46,8 @@ function MapLayout() {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/light-v10',
-      center: [-63, -36.5],
-      zoom: 5,
+      center: [-66.5, 18.2],
+      zoom: 9,
     });
 
     setMapInstance(map)
@@ -67,18 +67,21 @@ function MapLayout() {
     setMarkers([]);
     const newMarkers: mapboxgl.Marker[] = [];
 
-    property.forEach((property) => {
-      const marker = new mapboxgl.Marker({ color: 'red' })
-        .setLngLat([property.location.lng, property.location.lat])
-        .addTo(mapInstance!);
-
-        marker.getElement().addEventListener('click', () => {
-          navigate(`/properties/${property.id}`);
-
-        });
-
-      newMarkers.push(marker);
-    });
+      property.forEach((property) => {
+        const markerElement = document.createElement('div');
+        markerElement.className = 'custom-marker';
+        const marker = new mapboxgl.Marker({ element: markerElement })
+          .setLngLat([property.location.lng, property.location.lat])
+          .addTo(mapInstance!);
+  
+          marker.getElement().addEventListener('click', () => {
+            navigate(`/properties/${property.id}`);
+  
+          });
+  
+        newMarkers.push(marker);
+      });
+    
     
 
     setMarkers(newMarkers); 
