@@ -12,6 +12,14 @@ export const PropertyPage = () => {
   const { data: property } = useQueryProperty(id);
   const navigate = useNavigate();
 
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric",
+    });
+  };
+
   return (
     property && (
       <main className="propertyPage">
@@ -54,7 +62,7 @@ export const PropertyPage = () => {
             </div>
             <div className="iconWrapper">
               <FiClock />
-              <p>{property.formattedCreatedAt}</p>
+              <p>{formatDate(property.createdAt!)}</p>
             </div>
             <div className="iconWrapper">
               <FiMapPin />

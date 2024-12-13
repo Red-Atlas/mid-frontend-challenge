@@ -25,6 +25,14 @@ export const PropertyCard = ({
     navigate(`/property/${id}`);
   };
 
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric",
+    });
+  };
+
   return (
     <div
       className="propertyCard"
@@ -52,7 +60,7 @@ export const PropertyCard = ({
         </div>
         <div className="iconWrapper">
           <FiClock />
-          <p>{createdAt}</p>
+          <p>{formatDate(createdAt!)}</p>
         </div>
         <div className="info">
           <div className="iconWrapper">

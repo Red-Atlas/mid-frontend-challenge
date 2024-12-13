@@ -4,6 +4,16 @@
   place-items: center;
   width: 100%;
 
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 1.6rem;
+
+    > div {
+      width: 100%;
+      flex: unset;
+    }
+  }
+
   > div {
     flex: 1;
 

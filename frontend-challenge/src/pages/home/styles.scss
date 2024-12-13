@@ -6,6 +6,10 @@
   padding: 2.4rem;
   flex-direction: column;
 
+  @media (max-width: 767px) {
+    padding-inline: 1.6rem;
+  }
+
   .content {
     display: flex;
     flex-direction: column;

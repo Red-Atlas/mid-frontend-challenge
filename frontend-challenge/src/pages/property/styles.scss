@@ -7,6 +7,11 @@
   padding-inline: 4.8rem;
   padding-bottom: 8vh;
 
+  @media (max-width: 767px) {
+    gap: 2.4rem;
+    padding-inline: 1.6rem;
+  }
+
   .propertyHead {
     display: flex;
     flex-direction: column;
@@ -34,24 +39,42 @@
       display: flex;
       justify-content: space-between;
       place-items: center;
+
+      @media (max-width: 767px) {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
     }
 
     h2 {
       color: var(--primary-700);
       font-size: 4rem;
       font-weight: 700;
+
+      @media (max-width: 767px) {
+        font-size: 2.4rem;
+      }
     }
 
     .rightRow {
       display: flex;
       gap: 2.4rem;
       place-items: center;
+
+      @media (max-width: 767px) {
+        flex-wrap: wrap;
+      }
+
       // padding-right: 8vw;
 
       p {
         font-size: 2.4rem;
         font-weight: 400;
         color: var(--typography-700);
+
+        @media (max-width: 767px) {
+          font-size: 2rem;
+        }
       }
 
       button {
@@ -66,6 +89,10 @@
         gap: 0.8rem;
         place-items: center;
         border: none;
+
+        @media (max-width: 767px) {
+          padding-inline: 0.8rem;
+        }
       }
     }
   }
@@ -74,6 +101,10 @@
     display: flex;
     gap: 2.4rem;
     flex-direction: column;
+
+    @media (max-width: 767px) {
+      gap: 1.6rem;
+    }
 
     .imageWrapper {
       border-radius: 8px;
@@ -94,7 +125,9 @@
       gap: 1.6rem;
       place-items: center;
       justify-content: flex-start;
-
+      @media (max-width: 767px) {
+        flex-wrap: wrap;
+      }
       .iconWrapper {
         display: flex;
         gap: 0.8rem;
@@ -104,6 +137,11 @@
           width: 2rem;
           height: 2rem;
           color: var(--primary-700);
+
+          @media (max-width: 767px) {
+            width: 1.6rem;
+            height: 1.6rem;
+          }
         }
 
         p {
@@ -111,6 +149,9 @@
           font-weight: 400;
           color: var(--typography-700);
           text-transform: capitalize;
+          @media (max-width: 767px) {
+            font-size: 1.8rem;
+          }
         }
       }
     }
