@@ -28,28 +28,34 @@ export default function Home() {
     setIsPanelVisible,
   } = usePropertyContext();
 
+  const propertiesPerPage = 20;
+
   useEffect(() => {
     const fetchProperties = async () => {
       try {
         const response = await fetch(
-          `https://fake-api-listings.vercel.app/properties?page=${currentPage}&limit=10`
+          `https://fake-api-listings.vercel.app/properties?limit=300`
         );
         const data = await response.json();
         setProperties(data);
-        setFilteredProperties(data);
-        // Calcular el total de páginas basado en el total de propiedades
-        const totalProperties = 1000; // Número total de propiedades que debes obtener de la API o calcular
-        const limit = 30; // El número de elementos por página
-        const pages = Math.ceil(totalProperties / limit); // Total de páginas
+        // Calcular el número total de páginas
+        const pages = Math.ceil(data.length / propertiesPerPage);
+        setTotalPages(pages);
 
-        setTotalPages(pages); // Establecer el número total de páginas
-        // console.log(data);
+        // Inicializamos la página 1
+        setCurrentPage(1);
       } catch (error) {
         console.log("Error fetching properties", error);
       }
     };
     fetchProperties();
-  }, [setProperties, setFilteredProperties, currentPage, setTotalPages]);
+  }, [setProperties, setCurrentPage, setTotalPages]);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * propertiesPerPage;
+    const endIndex = startIndex + propertiesPerPage;
+    setFilteredProperties(properties.slice(startIndex, endIndex));
+  }, [properties, currentPage, setFilteredProperties]);
 
   useEffect(() => {
     console.log(properties);

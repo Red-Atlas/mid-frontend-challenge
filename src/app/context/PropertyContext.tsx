@@ -18,6 +18,10 @@ export interface Property {
     lat: number;
     lng: number;
   };
+  owner: {
+    name: string;
+    contact: string;
+  };
 }
 
 interface PropertyContextProps {
