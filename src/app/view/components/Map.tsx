@@ -7,8 +7,8 @@ import { useEffect } from "react";
 
 // Configurar los íconos de los marcadores
 const defaultIcon = L.icon({
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  iconUrl: markerIcon as unknown as string,
+  shadowUrl: markerShadow as unknown as string,
   iconAnchor: [12, 41], // Ajusta el punto de anclaje del ícono
 });
 
