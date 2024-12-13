@@ -1,0 +1,90 @@
+.filtersWrapper {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 1.6rem;
+
+    > div {
+      width: 100%;
+      flex: unset;
+    }
+  }
+
+  > div {
+    flex: 1;
+
+    &.rightRow {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 2.4rem;
+    }
+  }
+
+  .inputWrapper {
+    width: 100%;
+
+    input {
+      border-radius: 100px;
+      padding: 1.6rem;
+      border: 1px solid var(--primary-700);
+      outline: none;
+      background-color: transparent;
+      color: var(--typography-700);
+      font-size: 1.6rem;
+      font-weight: 400;
+      width: 100%;
+    }
+  }
+
+  .rightRow {
+    display: flex;
+    gap: 2.4rem;
+    place-items: center;
+
+    .selectWrapper {
+      select {
+        border: 1px solid var(--primary-700);
+        outline: none;
+        background-color: transparent;
+        color: var(--typography-700);
+        font-size: 1.6rem;
+        font-weight: 400;
+        padding: 0.8rem 1.2rem;
+
+        option {
+          font-size: inherit;
+          font-weight: inherit;
+          color: inherit;
+        }
+      }
+    }
+
+    .sortPrice {
+      display: flex;
+
+      &.up {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      svg {
+        transition: all ease-out 285ms;
+        width: 2rem;
+        height: 2rem;
+        color: var(--primary-700);
+        cursor: pointer;
+      }
+
+      &.down {
+        svg {
+          transform: rotate(0);
+        }
+      }
+    }
+  }
+}
