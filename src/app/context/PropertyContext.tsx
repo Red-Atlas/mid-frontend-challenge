@@ -2,13 +2,14 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface Property {
+export interface Property {
   id: number;
   type: string;
   status: string;
   isActive: boolean;
   images: string[];
   title: string;
+  description: string;
   address: string;
   price: number;
   area: number;
@@ -40,6 +41,10 @@ interface PropertyContextProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   totalPages: number;
   setTotalPages: React.Dispatch<React.SetStateAction<number>>;
+  selectedProperty: Property | null;
+  setSelectedProperty: React.Dispatch<React.SetStateAction<Property | null>>;
+  isPanelVisible: boolean;
+  setIsPanelVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PropertyContext = createContext<PropertyContextProps | undefined>(
@@ -59,6 +64,10 @@ export const PropertyProvider = ({ children }: { children: ReactNode }) => {
   const [sortOrder, setSortOrder] = useState<string>("asc");
   const [currentPage, setCurrentPage] = useState<number>(1); // Página actual
   const [totalPages, setTotalPages] = useState<number>(0); // Total de páginas disponibles
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
+  const [isPanelVisible, setIsPanelVisible] = useState<boolean>(false);
 
   return (
     <PropertyContext.Provider
@@ -81,6 +90,10 @@ export const PropertyProvider = ({ children }: { children: ReactNode }) => {
         setCurrentPage,
         totalPages,
         setTotalPages,
+        selectedProperty,
+        setSelectedProperty,
+        isPanelVisible,
+        setIsPanelVisible,
       }}
     >
       {children}

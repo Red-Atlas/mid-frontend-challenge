@@ -1,5 +1,111 @@
-import React from "react";
+import { usePropertyContext } from "@/app/context/PropertyContext";
+import React, { useEffect } from "react";
+import Search from "./Icons/Search";
 
 export default function Filters() {
-  return <div>Filters</div>;
+  const {
+    properties,
+    searchTerm,
+    setSearchTerm,
+    propertyType,
+    setPropertyType,
+    propertyStatus,
+    setPropertyStatus,
+    sortOrder,
+    setSortOrder,
+    setFilteredProperties,
+  } = usePropertyContext();
+
+  useEffect(() => {
+    const result = properties
+      .filter((property) => {
+        const matchesSearch =
+          property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          property.address.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesType =
+          !propertyType ||
+          property.type.toLowerCase() === propertyType.toLowerCase();
+
+        const matchesStatus =
+          !propertyStatus ||
+          property.status.toLowerCase() === propertyStatus.toLowerCase();
+        return matchesSearch && matchesType && matchesStatus;
+      })
+      .sort((a, b) => {
+        return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
+      });
+    setFilteredProperties(result);
+  }, [
+    searchTerm,
+    properties,
+    setFilteredProperties,
+    propertyType,
+    propertyStatus,
+    sortOrder,
+  ]);
+  return (
+    <div className="px-4 ">
+      <div className="relative w-full mb-2">
+        <Search className="size-6 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+        <input
+          type="text"
+          placeholder="Buscar por título o dirección..."
+          className="w-full pl-10 h-10 text-sm border rounded-md"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <div className="flex gap-4 mb-2">
+        <select
+          className="w-1/2 h-8 text-sm font-medium border rounded-md"
+          value={propertyType}
+          onChange={(e) => setPropertyType(e.target.value)}
+        >
+          <option value="">Tipo de propiedad</option>
+          <option value="house">Casa</option>
+          <option value="apartment">Departamento</option>
+          <option value="land">Terreno</option>
+          <option value="office">Oficina</option>
+        </select>
+        <select
+          className="w-1/2 h-8 text-sm font-medium border rounded-md"
+          value={propertyStatus}
+          onChange={(e) => setPropertyStatus(e.target.value)}
+        >
+          <option value="">Estado</option>
+          <option value="rent">Alquiler</option>
+          <option value="sale">Venta</option>
+        </select>
+      </div>
+      <div className="flex flex-row items-center gap-2 justify-end">
+        <label className="text-gray-700 font-semibold">
+          Ordenar por precio:
+        </label>
+        <div className="flex items-center gap-2">
+          <span className="text-sm">Mayor precio</span>
+          <label>
+            <input
+              type="checkbox"
+              checked={sortOrder === "desc"}
+              onChange={() =>
+                setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+              }
+              className=""
+            />
+          </label>
+          <span className="text-sm">Menor precio</span>
+          <label>
+            <input
+              type="checkbox"
+              checked={sortOrder === "asc"}
+              onChange={() =>
+                setSortOrder(sortOrder === "desc" ? "asc" : "desc")
+              }
+              className=""
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+  );
 }

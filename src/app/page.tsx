@@ -2,14 +2,15 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { Property, usePropertyContext } from "./context/PropertyContext";
+import Filters from "./view/components/Filters";
 import Area from "./view/components/Icons/Area";
+import ArrowLeft from "./view/components/Icons/ArrowLeft";
+import ArrowRigth from "./view/components/Icons/ArrowRigth";
 import Location from "./view/components/Icons/Location";
 import SectionMap from "./view/components/SectionMap";
 import formatDate from "./view/utils/formatDate";
-import { usePropertyContext } from "./context/PropertyContext";
-import Search from "./view/components/Icons/Search";
-import ArrowRigth from "./view/components/Icons/ArrowRigth";
-import ArrowLeft from "./view/components/Icons/ArrowLeft";
+import DetailsProperty from "./view/components/DetailsProperty";
 
 export default function Home() {
   const {
@@ -19,18 +20,12 @@ export default function Home() {
     setSelectedLocation,
     filteredProperties,
     setFilteredProperties,
-    searchTerm,
-    setSearchTerm,
-    propertyType,
-    setPropertyType,
-    propertyStatus,
-    setPropertyStatus,
-    sortOrder,
-    setSortOrder,
     currentPage,
     setCurrentPage,
     totalPages,
     setTotalPages,
+    setSelectedProperty,
+    setIsPanelVisible,
   } = usePropertyContext();
 
   useEffect(() => {
@@ -52,7 +47,6 @@ export default function Home() {
       } catch (error) {
         console.log("Error fetching properties", error);
       }
-      // setLoading(false);
     };
     fetchProperties();
   }, [setProperties, setFilteredProperties, currentPage, setTotalPages]);
@@ -62,36 +56,10 @@ export default function Home() {
     console.log(selectedLocation);
   }, [properties, selectedLocation]);
 
-  useEffect(() => {
-    const result = properties
-      .filter((property) => {
-        const matchesSearch =
-          property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          property.address.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesType =
-          !propertyType ||
-          property.type.toLowerCase() === propertyType.toLowerCase();
-
-        const matchesStatus =
-          !propertyStatus ||
-          property.status.toLowerCase() === propertyStatus.toLowerCase();
-        return matchesSearch && matchesType && matchesStatus;
-      })
-      .sort((a, b) => {
-        return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
-      });
-    setFilteredProperties(result);
-  }, [
-    searchTerm,
-    properties,
-    setFilteredProperties,
-    propertyType,
-    propertyStatus,
-    sortOrder,
-  ]);
-
-  const handleCardClick = (location: { lat: number; lng: number }) => {
-    setSelectedLocation(location); // Actualizar el estado con la ubicación de la propiedad seleccionada
+  const handleCardClick = (property: Property) => {
+    setSelectedLocation(property.location);
+    setSelectedProperty(property);
+    setIsPanelVisible(true);
   };
 
   const handlePreviousPage = () => {
@@ -103,72 +71,10 @@ export default function Home() {
   };
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen flex">
       <div className="min-w-auto max-w-[700px] max-h-[900px] absolute z-[10] bg-white rounded-lg m-20 py-3 shadow-lg">
         <h1 className="text-center font-bold mb-2">Propiedades</h1>
-        <div className="px-4 ">
-          <div className="relative w-full mb-2">
-            <Search className="size-6 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Buscar por título o dirección..."
-              className="w-full pl-10 h-10 text-sm border rounded-md"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <div className="flex gap-4 mb-2">
-            <select
-              className="w-1/2 h-8 text-sm font-medium border rounded-md"
-              value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
-            >
-              <option value="">Tipo de propiedad</option>
-              <option value="house">Casa</option>
-              <option value="apartment">Departamento</option>
-              <option value="land">Terreno</option>
-              <option value="office">Oficina</option>
-            </select>
-            <select
-              className="w-1/2 h-8 text-sm font-medium border rounded-md"
-              value={propertyStatus}
-              onChange={(e) => setPropertyStatus(e.target.value)}
-            >
-              <option value="">Estado</option>
-              <option value="rent">Alquiler</option>
-              <option value="sale">Venta</option>
-            </select>
-          </div>
-          <div className="flex flex-row items-center gap-2 justify-end">
-            <label className="text-gray-700 font-semibold">
-              Ordenar por precio:
-            </label>
-            <div className="flex items-center gap-2">
-              <span className="text-sm">Mayor precio</span>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={sortOrder === "desc"}
-                  onChange={() =>
-                    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-                  }
-                  className=""
-                />
-              </label>
-              <span className="text-sm">Menor precio</span>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={sortOrder === "asc"}
-                  onChange={() =>
-                    setSortOrder(sortOrder === "desc" ? "asc" : "desc")
-                  }
-                  className=""
-                />
-              </label>
-            </div>
-          </div>
-        </div>
+        <Filters />
         <div className="custom-scroll p-4 h-[600px]">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 ">
             {filteredProperties.length > 0 ? (
@@ -176,7 +82,7 @@ export default function Home() {
                 <div
                   key={property?.id}
                   className="w-full bg-gray-100 rounded-md  shadow-md cursor-pointer hover:scale-105 transition ease-in-out duration-200"
-                  onClick={() => handleCardClick(property.location)}
+                  onClick={() => handleCardClick(property)}
                 >
                   <div className="relative">
                     <div className="absolute px-2 m-2 bg-blue-200 rounded-2xl">
@@ -251,6 +157,8 @@ export default function Home() {
           </button>
         </div>
       </div>
+
+      <DetailsProperty />
 
       <SectionMap location={selectedLocation} />
     </div>
