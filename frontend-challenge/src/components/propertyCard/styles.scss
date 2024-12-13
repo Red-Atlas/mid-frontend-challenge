@@ -1,0 +1,87 @@
+.propertyCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  // max-width: 24rem;
+  flex: 1;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 1.2rem;
+  min-width: 36rem;
+  max-width: 36rem;
+  cursor: pointer;
+
+  .imageWrapper {
+    border-radius: 8px;
+
+    img {
+      border-radius: 8px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .bottomCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    h4 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--typography-700);
+    }
+
+    > p {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--typography-500);
+    }
+
+    .info {
+      display: flex;
+      gap: 2.4rem;
+      // justify-content: space-around;
+      place-items: center;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .iconWrapper {
+      display: flex;
+      gap: 0.8rem;
+      place-items: center;
+
+      svg {
+        width: 1.6rem;
+        height: 1.6rem;
+        color: var(--primary-700);
+        // stroke-width: 1px;
+      }
+
+      span {
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 10px;
+
+        &.active {
+          background-color: #1d681d;
+        }
+        &.inactive {
+          background-color: #5a5656;
+        }
+      }
+
+      p {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: var(--typography-500);
+        text-transform: capitalize;
+
+        &.price {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}

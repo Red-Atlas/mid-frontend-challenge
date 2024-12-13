@@ -1,0 +1,41 @@
+.paginationWrapper {
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  gap: 3.2rem;
+  padding-block: 3.2rem;
+
+  button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    gap: 0.8rem;
+    place-items: center;
+    color: var(--typography-500);
+    cursor: pointer;
+
+    p {
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--typography-500);
+    }
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+      color: var(--primary-700);
+    }
+  }
+
+  p {
+    font-size: 1.8rem;
+    color: var(--typography-500);
+    font-weight: 400;
+
+    span {
+      font-size: inherit;
+      color: var(--primary-700);
+      font-weight: 500;
+    }
+  }
+}
