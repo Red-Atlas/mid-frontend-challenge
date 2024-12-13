@@ -1,3 +1,10 @@
+  export interface PropertyResponse {
+    limit: number
+    page: number
+    properties: Property[]
+    total: number
+    totalPages: number
+  }  
   
   export interface Property {
     id: string

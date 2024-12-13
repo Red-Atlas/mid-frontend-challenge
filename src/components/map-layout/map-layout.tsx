@@ -8,13 +8,14 @@ import SnackbarComponent from '../../components/snackbar/snackbar';
 import { Property } from '../../interfaces/properties.interface';
 import SnacbkarProps from '../../interfaces/snackbar.interface';
 import { RootState } from '../../store';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 
 function MapLayout() {
-
+  const navigate = useNavigate();
   const [snackbar, setSnackbar] = useState<SnacbkarProps>({
     open: false,
     message: '',
@@ -25,15 +26,17 @@ function MapLayout() {
   const { property } = useSelector((state: RootState) => state.properties);
   const [markers, setMarkers] = useState<mapboxgl.Marker[]>([]);
 
-  if (process.env.REACT_APP_MAPBOX_TOKEN) {
-    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN
-  } else {
-    setSnackbar({
-      open: true,
-      message: 'Error',
-      severity: 'error',
-    });
-  }
+  useEffect(() => {
+    if (process.env.REACT_APP_MAPBOX_TOKEN) {
+      mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+    } else {
+      setSnackbar({
+        open: true,
+        message: 'Mapbox token is missing',
+        severity: 'error',
+      });
+    }
+  }, []);
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
@@ -69,10 +72,16 @@ function MapLayout() {
         .setLngLat([property.location.lng, property.location.lat])
         .addTo(mapInstance!);
 
+        marker.getElement().addEventListener('click', () => {
+          navigate(`/properties/${property.id}`);
+
+        });
+
       newMarkers.push(marker);
     });
+    
 
-    setMarkers(newMarkers);
+    setMarkers(newMarkers); 
   };
 
 

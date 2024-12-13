@@ -32,6 +32,13 @@
     cursor: pointer;
 }
 
+
+.button-apply:disabled{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
 .flex-filters-dialog{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -52,26 +59,39 @@
     gap: 10px;
 }
 
-.tag {
-    background-color: white !important;
-    border: 1px solid #3a3a3a;
-    color: #3a3a3a;
+.tag-dialog-filters {
     font-size: 12px;
     font-weight: 700;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 15px;
     text-transform: uppercase;
+    background-color: white;
+    border: 1px solid #3a3a3a;
+    color: #3a3a3a;
 }
 
-.tag.tipo {
-    background-color: #ff5722;
-}
-
-.tag.estado {
-    background-color: #4caf50;
-}
-
-.tag.disponibilidad {
-    background-color: #2196f3;
-}
+.tag-dialog-filters:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .tag-dialog-filters.apartment-active {
+    background-color: #ff5722 !important; 
+    border: none;
+    color: white;
+  }
+  .tag-dialog-filters.house-active {
+    background-color: #4caf50 !important; 
+    color: white;
+    border: none;
+  }
+  .tag-dialog-filters.office-active {
+    background-color: #2196f3 !important;
+    color: white;
+    border: none;
+  }
+  .tag-dialog-filters.land-active {
+    background-color: red !important;
+    color: white;
+    border: none;
+  }

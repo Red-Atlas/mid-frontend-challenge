@@ -72,8 +72,11 @@
     background-color: #4caf50;
 }
 
-.tag.disponibilidad {
+.tag.disponibility.active {
     background-color: #2196f3;
+}
+.tag.disponibility.inactive {
+    background-color: #f60a0f;
 }
 
 .propiedad-card {
@@ -82,6 +85,7 @@
     height: auto;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .pagination-container {

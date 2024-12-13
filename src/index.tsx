@@ -8,6 +8,7 @@ import PropertiesList from './components/properties-list/properties-list';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme';
 import "./styles/fonts.css"; 
+import AppRoutes from './routes';
 
 
 const rootElement = document.getElementById('root');
@@ -18,8 +19,7 @@ if (rootElement) {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <React.StrictMode>
-          <MapLayout />
-          <PropertiesList />
+         <AppRoutes/>
         </React.StrictMode>
       </Provider>
     </ThemeProvider>
