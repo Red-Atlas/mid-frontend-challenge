@@ -1,14 +1,19 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+// import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { MapContainer } from "react-leaflet/MapContainer";
+import { TileLayer } from "react-leaflet/TileLayer";
+import { useMap } from "react-leaflet/hooks";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css"; // Importa los estilos de Leaflet
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { useEffect } from "react";
+import { Marker } from "react-leaflet/Marker";
+import { Popup } from "react-leaflet/Popup";
 
 // Configurar los íconos de los marcadores
 const defaultIcon = L.icon({
-  iconUrl: markerIcon as unknown as string,
-  shadowUrl: markerShadow as unknown as string,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
   iconAnchor: [12, 41], // Ajusta el punto de anclaje del ícono
 });
 
