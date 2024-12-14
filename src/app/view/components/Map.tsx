@@ -1,28 +1,25 @@
 // import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import { MapContainer } from "react-leaflet/MapContainer";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import L from "leaflet";
 import "leaflet/dist/leaflet.css"; // Importa los estilos de Leaflet
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { useEffect } from "react";
+import { MapContainer } from "react-leaflet/MapContainer";
 import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
-
-// Configurar los íconos de los marcadores
-const defaultIcon = L.icon({
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
-  iconAnchor: [12, 41], // Ajusta el punto de anclaje del ícono
-});
-
-L.Marker.prototype.options.icon = defaultIcon; // Configura el ícono predeterminado para todos los marcadores
+import { TileLayer } from "react-leaflet/TileLayer";
+import { useMap } from "react-leaflet/hooks";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
+import L from "leaflet";
 
 interface MapProps {
   location: { lat: number; lng: number } | null; // Recibe location como prop
 }
 
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIconRetina,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
 function UpdateMapCenter({
   location,
 }: {
