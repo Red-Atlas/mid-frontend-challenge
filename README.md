@@ -11,7 +11,7 @@
 
 # Enlace al proyecto
 
-[Ver Proyecto Desplegado](https://red-atlas-challenge-ncolombo.vercel.app/)
+[https://red-atlas-challenge-ncolombo.vercel.app/](https://red-atlas-challenge-ncolombo.vercel.app/)
 
 # Resumen de mi solución
 
