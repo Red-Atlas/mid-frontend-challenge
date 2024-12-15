@@ -64,6 +64,12 @@ export const CreateProperty: FC<CreatePropertyInterface> = ({ onCreate }) => {
     }
     if (typeErrors.length > 0) newErrors.type = typeErrors;
 
+    const areaErrors: string[] = [];
+    if (newProperty.area && isNaN(Number(newProperty.area))) {
+      areaErrors.push("Area must be a valid number");
+    }
+    if (areaErrors.length > 0) newErrors.area = areaErrors;
+
     const priceErrors: string[] = [];
     if (!newProperty.price || isNaN(Number(newProperty.price))) {
       priceErrors.push("Price is required and must be a valid number");
