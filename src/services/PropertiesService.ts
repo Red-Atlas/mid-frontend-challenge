@@ -1,8 +1,10 @@
 import { useContext } from "react";
+
 import PropertiesContext, { PropertiesContextType } from "../context/ContextProvider";
 import { formatDate } from "../utils/formatDate";
 import { generateRandomUUID } from "../utils/generateRandomUUID";
 import { getCoordinates } from "../utils/getCoordinates";
+
 
 export interface Location {
   lat: number;

@@ -1,11 +1,14 @@
 import { useEffect, useState, useMemo } from "react";
 import { Pagination } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 import { Location, getPropertiesFromJSON } from "../../services/PropertiesService";
 import { PropertyCard } from "../PropertyCard";
 import SearchBar from "../SearchBar";
-import "./styles.css";
 import { Map } from "../Map";
-import { useNavigate } from "react-router-dom";
+
+import "./styles.css";
+
 
 interface Filters {
   propertyType: string[];
@@ -82,7 +85,7 @@ export const Properties = () => {
     }
   }, [sortedProperties, coordinates]);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 

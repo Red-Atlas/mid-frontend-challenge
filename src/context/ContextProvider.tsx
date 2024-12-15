@@ -1,6 +1,8 @@
 import React, { createContext, useState, ReactNode, useEffect } from 'react';
+
 import { Property } from '../services/PropertiesService';
-import propertiesData from "../../properties.json"
+import propertiesData from "../../properties.json";
+
 
 const properties: Property[] = propertiesData as Property[];
 

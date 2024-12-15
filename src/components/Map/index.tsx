@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+
 import { Location } from '../../services/PropertiesService';
-import "./styles.css"
+
+import "./styles.css";
+
 
 interface LocationInfo {
   location: Location;

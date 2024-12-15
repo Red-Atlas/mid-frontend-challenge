@@ -1,10 +1,12 @@
-import './styles.css'
-import { Property } from "../../services/PropertiesService";
-import { FC, useState } from 'react';
-
-import { formatDate } from '../../utils/formatDate';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { Property } from "../../services/PropertiesService";
+import { formatDate } from '../../utils/formatDate';
 import { Map } from '../Map';
+
+import './styles.css';
+
 
 interface PropertyDetailInterface {
   property: Property;

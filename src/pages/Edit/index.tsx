@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom"
-import { EditProperty } from "../../components/EditProperty"
-import { Property, editProperty, getPropertyFromJSON } from "../../services/PropertiesService"
-import { useContext } from "react"
-import PropertiesContext from "../../context/ContextProvider"
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
 
-import "./styles.css"
+import { EditProperty } from "../../components/EditProperty";
+import { Property, editProperty, getPropertyFromJSON } from "../../services/PropertiesService";
+import PropertiesContext from "../../context/ContextProvider";
+
+import "./styles.css";
+
 
 export const Edit = () => {
   const { id } = useParams()

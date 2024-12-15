@@ -1,3 +1,4 @@
+
 export const formatDate = (dateToFormat: string | Date): string => {
   if (typeof dateToFormat === 'string' && /^\d{2}\/\d{2}\/\d{4}$/.test(dateToFormat)) {
     return dateToFormat;

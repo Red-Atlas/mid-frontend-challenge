@@ -3,6 +3,7 @@ import { createProperty as createPropertyFunction } from "../../services/Propert
 
 import "./styles.css"
 
+
 export const Create = () => {
   return (
     <main className="create-container">

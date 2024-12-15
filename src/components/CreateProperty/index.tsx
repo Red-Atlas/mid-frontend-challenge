@@ -1,8 +1,12 @@
-import './styles.css';
-import { CreateProperty as CreatePropertyModel } from "../../services/PropertiesService";
 import { FC, useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+
+import { CreateProperty as CreatePropertyModel } from "../../services/PropertiesService";
 import PropertiesContext, { PropertiesContextType } from '../../context/ContextProvider';
+
+import './styles.css';
+
+
 
 interface CreatePropertyInterface {
   onCreate: (newProperty: CreatePropertyModel, context: PropertiesContextType | undefined) => void;

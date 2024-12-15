@@ -1,8 +1,11 @@
-import './styles.css';
-import { Property } from "../../services/PropertiesService";
 import { FC, useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+
+import { Property } from "../../services/PropertiesService";
 import PropertiesContext, { PropertiesContextType } from '../../context/ContextProvider';
+
+import './styles.css';
+
 
 interface EditPropertyInterface {
   property: Property;

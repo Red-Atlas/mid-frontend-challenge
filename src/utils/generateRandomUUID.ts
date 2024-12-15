@@ -1,5 +1,4 @@
 
-
 export const generateRandomUUID = (): string => {
   const generateSegment = (length: number) => {
     return Math.floor((1 + Math.random()) * 0x10000)
