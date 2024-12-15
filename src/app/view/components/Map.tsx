@@ -6,8 +6,8 @@ import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
+// import markerShadow from "leaflet/dist/images/marker-shadow.png";
+// import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import L from "leaflet";
 
 interface MapProps {
@@ -15,9 +15,9 @@ interface MapProps {
 }
 
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIconRetina,
+  iconRetinaUrl: "",
   iconUrl: "/images/mapicon.svg",
-  shadowUrl: markerShadow,
+  shadowUrl: "",
   iconSize: [40, 40],
 });
 function UpdateMapCenter({
