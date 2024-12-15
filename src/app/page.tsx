@@ -61,7 +61,7 @@ export default function Home() {
       }
     };
     fetchProperties();
-  }, [setProperties, setCurrentPage, setTotalPages]);
+  }, [setProperties, setCurrentPage, setTotalPages, setSelectedProperty]);
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * propertiesPerPage;
