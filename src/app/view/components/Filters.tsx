@@ -19,6 +19,8 @@ export default function Filters() {
     currentPage,
     isModalOpen,
     setIsModalOpen,
+    setCurrentPage,
+    setTotalPages,
   } = usePropertyContext();
 
   const propertiesPerPage = 20;
@@ -45,9 +47,22 @@ export default function Filters() {
       .sort((a, b) => {
         return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
       });
+    // Recalcular el total de páginas basado en las propiedades filtradas
+    const totalFilteredPages = Math.ceil(result.length / propertiesPerPage);
+
+    // Ajustar la página actual si es mayor al total recalculado
+    if (currentPage > totalFilteredPages) {
+      setCurrentPage(1); // Reiniciar a la primera página si es necesario
+    }
+
     const startIndex = (currentPage - 1) * propertiesPerPage;
     const endIndex = startIndex + propertiesPerPage;
+
+    // Actualizar las propiedades filtradas para la página actual
     setFilteredProperties(result.slice(startIndex, endIndex));
+
+    // Actualizar el total de páginas
+    setTotalPages(totalFilteredPages);
   }, [
     searchTerm,
     properties,
@@ -56,6 +71,8 @@ export default function Filters() {
     propertyStatus,
     sortOrder,
     currentPage,
+    setCurrentPage,
+    setTotalPages,
   ]);
   return (
     <>
