@@ -6,19 +6,23 @@ import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
+// import markerIcon from "leaflet/dist/images/marker-icon.png";
+// import markerShadow from "leaflet/dist/images/marker-shadow.png";
+// import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import L from "leaflet";
 
 interface MapProps {
   location: { lat: number; lng: number } | null; // Recibe location como prop
 }
 
+// delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIconRetina,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 function UpdateMapCenter({
   location,
