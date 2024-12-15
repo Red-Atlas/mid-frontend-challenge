@@ -1,5 +1,5 @@
 import { usePropertyContext } from "@/app/context/PropertyContext";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 export default function CreatePropertyModal({
@@ -9,7 +9,16 @@ export default function CreatePropertyModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const { selectedProperty, setProperties } = usePropertyContext();
+  const {
+    selectedProperty,
+    setProperties,
+    newLocation,
+    setNewLocation,
+    setIsSelectingLocation,
+  } = usePropertyContext();
+  console.log(newLocation?.lat, newLocation?.lng);
+
+  // const [newLocation, setNewLocation] = useState({ lat: "", lng: "" });
 
   // Estado inicial con las propiedades requeridas
   const [formData, setFormData] = useState({
@@ -17,18 +26,37 @@ export default function CreatePropertyModal({
     description: selectedProperty?.description || "",
     price: selectedProperty?.price || "",
     area: selectedProperty?.area || "",
+    createdAt: new Date().toISOString().split("T")[0],
+    updatedAt: "",
     address: selectedProperty?.address || "",
-    type: selectedProperty?.type || "apartment",
-    status: selectedProperty?.status || "sale",
+    images: ["https://dummyimage.com/800x600/cccccc/000000&text=Property+1"],
+    type: selectedProperty?.type || "",
+    status: selectedProperty?.status || "",
     isActive: selectedProperty?.isActive || true,
     owner: {
       name: selectedProperty?.owner?.name || "",
       contact: selectedProperty?.owner?.contact || "",
     },
+    location: {
+      lat: selectedProperty?.location?.lat || "",
+      lng: selectedProperty?.location?.lng || "",
+    },
   });
 
+  useEffect(() => {
+    if (newLocation?.lat && newLocation?.lng) {
+      setFormData((prev) => ({
+        ...prev,
+        location: {
+          lat: newLocation.lat,
+          lng: newLocation.lng,
+        },
+      }));
+    }
+  }, [newLocation]);
+
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
 
@@ -39,6 +67,16 @@ export default function CreatePropertyModal({
         ...prev,
         owner: {
           ...prev.owner,
+          [key]: value,
+        },
+      }));
+    } else if (name === "location.lat" || name === "location.lng") {
+      // Actualiza la latitud o longitud en el estado de ubicación
+      const key = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        location: {
+          ...prev.location,
           [key]: value,
         },
       }));
@@ -75,14 +113,11 @@ export default function CreatePropertyModal({
         );
 
         if (response.ok) {
-          const updatedProperty = await response.json();
-          console.log(updatedProperty);
+          const newProperty = await response.json();
+          console.log(newProperty);
 
-          setProperties((prev) =>
-            prev.map((property) =>
-              property.id === updatedProperty.id ? updatedProperty : property
-            )
-          );
+          // Actualiza la lista de propiedades añadiendo la nueva propiedad
+          setProperties((prev) => [...prev, newProperty]);
           Swal.fire("OK!", "Su propiedad ha sido creada con exito!", "success"); // Alerta de éxito
           onClose(); // Cerrar el modal
         } else {
@@ -106,7 +141,7 @@ export default function CreatePropertyModal({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-      <div className="bg-white w-1/3 p-6 rounded-lg shadow-lg relative">
+      <div className="bg-white w-full max-w-2xl p-6 rounded-lg shadow-lg relative overflow-y-auto max-h-[90vh] custom-scroll">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-500 hover:text-black"
@@ -169,6 +204,36 @@ export default function CreatePropertyModal({
               required
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium">Tipo</label>
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2"
+              required
+            >
+              <option value="">Seleccione tipo de inmueble</option>
+              <option value="apartment">Departamento</option>
+              <option value="house">Casa</option>
+              <option value="land">Terreno</option>
+              <option value="office">Oficina</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Estado</label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2"
+              required
+            >
+              <option value="">Seleccione estado</option>
+              <option value="sale">Venta</option>
+              <option value="rent">Alquiler</option>
+            </select>
+          </div>
 
           <div>
             <label className="block text-sm font-medium">Propietario</label>
@@ -193,15 +258,58 @@ export default function CreatePropertyModal({
               />
             </div>
           </div>
+          <div>
+            <label className="block text-sm font-medium">Latitud</label>
+            <input
+              type="text"
+              name="location.lat"
+              value={formData.location.lat}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium">Longitud</label>
+            <input
+              type="text"
+              name="location.lng"
+              value={formData.location.lng}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2"
+              required
+            />
+          </div>
+
+          {/* Botón para seleccionar la ubicación en el mapa */}
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={() => {
+                setIsSelectingLocation(true);
+                onClose();
+              }}
+              className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
+            >
+              Seleccionar ubicación en el mapa
+            </button>
+          </div>
+
           <div className="flex justify-end">
             <button
               type="button"
-              onClick={onClose}
+              onClick={() => {
+                onClose();
+                setIsSelectingLocation(false);
+                setNewLocation({ lat: 0, lng: 0 });
+              }}
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2"
             >
               Cancelar
             </button>
             <button
+              onClick={() => setIsSelectingLocation(false)}
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded-md"
             >

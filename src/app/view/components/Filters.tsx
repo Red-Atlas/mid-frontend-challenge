@@ -1,8 +1,8 @@
 import { usePropertyContext } from "@/app/context/PropertyContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import CreatePropertyModal from "./CreatePropertyModal";
 import Add from "./Icons/Add";
 import Search from "./Icons/Search";
-import CreatePropertyModal from "./CreatePropertyModal";
 
 export default function Filters() {
   const {
@@ -17,9 +17,9 @@ export default function Filters() {
     setSortOrder,
     setFilteredProperties,
     currentPage,
+    isModalOpen,
+    setIsModalOpen,
   } = usePropertyContext();
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const propertiesPerPage = 20;
 
@@ -27,8 +27,12 @@ export default function Filters() {
     const result = properties
       .filter((property) => {
         const matchesSearch =
-          property.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          property.address?.toLowerCase().includes(searchTerm.toLowerCase());
+          (searchTerm &&
+            (property.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              property.address
+                ?.toLowerCase()
+                .includes(searchTerm.toLowerCase()))) ||
+          !searchTerm; // Si el searchTerm está vacío, no se filtra por título o dirección
         const matchesType =
           !propertyType ||
           property.type.toLowerCase() === propertyType.toLowerCase();

@@ -49,6 +49,17 @@ interface PropertyContextProps {
   setSelectedProperty: React.Dispatch<React.SetStateAction<Property | null>>;
   isPanelVisible: boolean;
   setIsPanelVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  newLocation: { lat: number; lng: number } | null;
+  setNewLocation: React.Dispatch<
+    React.SetStateAction<{
+      lat: number;
+      lng: number;
+    } | null>
+  >;
+  isSelectingLocation: boolean;
+  setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PropertyContext = createContext<PropertyContextProps | undefined>(
@@ -72,6 +83,13 @@ export const PropertyProvider = ({ children }: { children: ReactNode }) => {
     null
   );
   const [isPanelVisible, setIsPanelVisible] = useState<boolean>(false);
+  const [newLocation, setNewLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
+  const [isSelectingLocation, setIsSelectingLocation] =
+    useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <PropertyContext.Provider
@@ -98,6 +116,12 @@ export const PropertyProvider = ({ children }: { children: ReactNode }) => {
         setSelectedProperty,
         isPanelVisible,
         setIsPanelVisible,
+        newLocation,
+        setNewLocation,
+        isSelectingLocation,
+        setIsSelectingLocation,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}

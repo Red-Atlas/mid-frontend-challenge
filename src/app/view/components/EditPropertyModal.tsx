@@ -35,8 +35,8 @@ export default function EditPropertyModal({
         price: selectedProperty.price || 0,
         area: selectedProperty.area || 0,
         address: selectedProperty.address || "",
-        type: selectedProperty.type || "apartment",
-        status: selectedProperty.status || "sale",
+        type: selectedProperty.type || "",
+        status: selectedProperty.status || "",
         isActive: selectedProperty.isActive || false,
         owner: {
           name: selectedProperty.owner?.name || "",
@@ -202,7 +202,7 @@ export default function EditPropertyModal({
               className="w-full border rounded-md p-2"
               required
             >
-              <option value="apartment">Apartamento</option>
+              <option value="apartment">Departamento</option>
               <option value="house">Casa</option>
               <option value="land">Terreno</option>
               <option value="office">Oficina</option>

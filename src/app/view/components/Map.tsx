@@ -5,10 +5,11 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { Marker } from "react-leaflet/Marker";
 import { Popup } from "react-leaflet/Popup";
 import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
+import { useMap, useMapEvents } from "react-leaflet/hooks";
 // import markerShadow from "leaflet/dist/images/marker-shadow.png";
 // import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import L from "leaflet";
+import { usePropertyContext } from "@/app/context/PropertyContext";
 
 interface MapProps {
   location: { lat: number; lng: number } | null; // Recibe location como prop
@@ -20,6 +21,26 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "",
   iconSize: [40, 40],
 });
+
+function ClickableMap({
+  setNewLocation,
+  setIsModalOpen,
+}: {
+  setNewLocation: (marker: { lat: number; lng: number }) => void;
+  setIsModalOpen: (isOpen: boolean) => void;
+}) {
+  useMapEvents({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    click(e: any) {
+      const { lat, lng } = e.latlng; // Obtenemos las coordenadas del clic
+      console.log("Latitud:", lat, "Longitud:", lng); // Muestra las coordenadas
+      setNewLocation({ lat, lng });
+      setIsModalOpen(true);
+    },
+  });
+
+  return null;
+}
 function UpdateMapCenter({
   location,
 }: {
@@ -47,6 +68,9 @@ function UpdateMapCenter({
 }
 
 export default function Map({ location }: MapProps) {
+  const { setNewLocation, newLocation, isSelectingLocation, setIsModalOpen } =
+    usePropertyContext();
+
   return (
     <>
       <MapContainer
@@ -77,15 +101,27 @@ export default function Map({ location }: MapProps) {
           opacity={0.9} // Ajusta la opacidad para que sea visible
         />
         <UpdateMapCenter location={location} />
+        {isSelectingLocation && (
+          <ClickableMap
+            setNewLocation={setNewLocation}
+            setIsModalOpen={setIsModalOpen}
+          />
+        )}
+
         <Marker
           position={
             location ? [location.lat, location.lng] : [18.449804, -66.492857]
           }
         >
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+          <Popup>Ubicación de la propiedad</Popup>
         </Marker>
+
+        {/* Marcador dinámico que se mueve al hacer clic */}
+        {newLocation && (
+          <Marker position={[newLocation.lat, newLocation.lng]}>
+            <Popup>Ubicación seleccionada</Popup>
+          </Marker>
+        )}
       </MapContainer>
     </>
   );

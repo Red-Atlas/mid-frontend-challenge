@@ -45,16 +45,21 @@ export default function Home() {
     const fetchProperties = async () => {
       try {
         const response = await fetch(
-          `https://fake-api-listings.vercel.app/properties?limit=300`
+          `https://fake-api-listings.vercel.app/properties?page=1&limit=13000`
         );
         const data = await response.json();
-        setProperties(data);
-        // Calcular el número total de páginas
-        const pages = Math.ceil(data.length / propertiesPerPage);
-        setTotalPages(pages);
-
-        // Inicializamos la página 1
-        setCurrentPage(1);
+        if (Array.isArray(data) && data.length > 0) {
+          // const sortedProperties = data.sort(
+          //   (a, b) =>
+          //     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          // );
+          setProperties(data);
+          const pages = Math.ceil(data.length / propertiesPerPage);
+          setTotalPages(pages);
+          setCurrentPage(1);
+        } else {
+          console.error("Error: Los datos no tienen el formato esperado", data);
+        }
       } catch (error) {
         console.log("Error fetching properties", error);
       }
@@ -119,31 +124,37 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                  <Image
-                    src={property.images[0]}
-                    width={200}
-                    height={200}
-                    alt="Imagen"
-                    className="w-full h-36 rounded-t-md"
-                  />
+                  {property?.images && property.images.length > 0 ? (
+                    <Image
+                      src={property.images[0]} // Primer imagen del array
+                      width={200}
+                      height={200}
+                      alt={`Imagen de ${property.title}`}
+                      className="w-full h-36 rounded-t-md"
+                    />
+                  ) : (
+                    <div className="w-full h-36 rounded-t-md bg-gray-300 flex items-center justify-center">
+                      <span className="text-gray-500">Sin imagen</span>
+                    </div>
+                  )}
 
                   <div className="p-2">
                     <h1 className="font-semibold mb-2 text-lg">
-                      {property.title}
+                      {property?.title}
                     </h1>
                     <h2 className="font-semibold flex flex-row items-center text-base">
                       <Location />
-                      {property.address}
+                      {property?.address}
                     </h2>
                     <h3 className="font-medium ml-1 text-base">
-                      ${property.price}
+                      ${property?.price}
                     </h3>
                     <h4 className="font-medium flex flex-row items-center text-base">
                       <Area />
-                      {property.area}
+                      {property?.area}
                     </h4>
                     <h5 className="text-right text-sm font-semibold items-center">
-                      {formatDate(property.createdAt)}
+                      {formatDate(property?.createdAt)}
                     </h5>
                   </div>
                 </div>
