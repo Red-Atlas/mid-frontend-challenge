@@ -45,7 +45,9 @@ Este repositorio contiene dos aplicaciones:
 ### **Backend - API Service**
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/AgustinPolicano/mid-frontend-challenge/tree/agustin-policano
+   git clone https://github.com/AgustinPolicano/mid-frontend-challenge.git
+   cd mid-frontend-challenge/
+   git checkout agustin-policano
    cd /api-service 
      ```
 2.   **Instalar dependencias**:
@@ -58,9 +60,11 @@ Este repositorio contiene dos aplicaciones:
    PORT=5000 (O el puerto que gustes)
    EXTERNAL_API_URL = 'https://fake-api-listings.vercel.app/'
      ```
-3.  **Ejecutar el servidor**:  
+3.  **Descomentar el código de server.ts para correr el proyecto en local, asi deberia quedar tu server.ts**:  
     ```env
-     npm run dev
+    app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+    }); 
      ```
      
 Tu servicio ya deberia estar corriendo en el puerto seleccionado 🚀
@@ -73,6 +77,7 @@ Tu servicio ya deberia estar corriendo en el puerto seleccionado 🚀
 2. **Configurar variables de entorno**:
       ```env
     Crea un archivo .env en la carpeta raíz con la URL de la API:
+    REACT_APP_MAPBOX_TOKEN=tu_token_de_mapbox
     REACT_APP_API=http://localhost:5000/api
      ```
 3. **Ejecutar la aplicación**:
