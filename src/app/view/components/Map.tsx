@@ -1,11 +1,11 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+// import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css"; // Importa los estilos de Leaflet
 import { useEffect } from "react";
-// import { MapContainer } from "react-leaflet/MapContainer";
-// import { Marker } from "react-leaflet/Marker";
-// import { Popup } from "react-leaflet/Popup";
-// import { TileLayer } from "react-leaflet/TileLayer";
-// import { useMap } from "react-leaflet/hooks";
+import { MapContainer } from "react-leaflet/MapContainer";
+import { Marker } from "react-leaflet/Marker";
+import { Popup } from "react-leaflet/Popup";
+import { TileLayer } from "react-leaflet/TileLayer";
+import { useMap } from "react-leaflet/hooks";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 // import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
