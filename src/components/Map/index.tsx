@@ -20,6 +20,15 @@ interface MapProps {
 export const Map: React.FC<MapProps> = ({ locationInfo, zoomLevel }) => {
   const [visibleMarkers, setVisibleMarkers] = useState<L.Marker[]>([]);
 
+  const markerIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet/dist/images/marker-icon.png', // Usando el icono predeterminado de Leaflet
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://unpkg.com/leaflet/dist/images/marker-shadow.png', // Sombra del marcador
+    shadowSize: [41, 41]
+  });
+
   useEffect(() => {
     if (locationInfo.length === 0) return;
 
@@ -41,7 +50,7 @@ export const Map: React.FC<MapProps> = ({ locationInfo, zoomLevel }) => {
       });
 
       const newMarkers = visibleProperties.map(({ location, locationName }) => {
-        const marker = L.marker([location.lat, location.lng]).addTo(map);
+        const marker = L.marker([location.lat, location.lng], { icon: markerIcon }).addTo(map);
         marker.bindPopup(`<b>${locationName}</b>`);
 
         marker.on('mouseover', () => {
