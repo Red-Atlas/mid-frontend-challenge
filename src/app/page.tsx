@@ -12,6 +12,18 @@ import SectionMap from "./view/components/SectionMap";
 import formatDate from "./view/utils/formatDate";
 import DetailsProperty from "./view/components/DetailsProperty";
 
+const typeTranslations: Record<string, string> = {
+  house: "Casa",
+  apartment: "Departamento",
+  land: "Terreno",
+  // Agrega más tipos según sea necesario
+};
+
+const statusTranslations: Record<string, string> = {
+  sale: "En venta",
+  rent: "Alquiler",
+};
+
 export default function Home() {
   const {
     properties,
@@ -93,12 +105,13 @@ export default function Home() {
                   <div className="relative">
                     <div className="absolute px-2 m-2 bg-blue-200 rounded-2xl">
                       <span className="text-gray-700 font-semibold text-sm">
-                        {property?.type}
+                        {typeTranslations[property?.type] || property?.type}
                       </span>
                     </div>
                     <div className="absolute top-8 px-2 m-2 bg-yellow-200 rounded-2xl">
                       <span className="text-gray-700 font-semibold text-sm">
-                        {property.status}
+                        {statusTranslations[property?.status] ||
+                          property?.status}
                       </span>
                     </div>
                     <div className="absolute top-16 px-2 m-2 bg-green-200 rounded-2xl">

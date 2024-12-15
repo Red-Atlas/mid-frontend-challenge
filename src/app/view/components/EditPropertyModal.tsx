@@ -9,7 +9,8 @@ export default function EditPropertyModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const { selectedProperty, setProperties } = usePropertyContext();
+  const { selectedProperty, setProperties, setSelectedProperty } =
+    usePropertyContext();
 
   // Estado inicial con las propiedades requeridas
   const [formData, setFormData] = useState({
@@ -81,6 +82,9 @@ export default function EditPropertyModal({
               property.id === updatedProperty.id ? updatedProperty : property
             )
           );
+          if (selectedProperty?.id === updatedProperty.id) {
+            setSelectedProperty(updatedProperty);
+          }
           Swal.fire(
             "OK!",
             "Su propiedad ha sido modificada con exito!",
