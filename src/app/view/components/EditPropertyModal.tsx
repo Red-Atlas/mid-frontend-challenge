@@ -1,5 +1,5 @@
 import { usePropertyContext } from "@/app/context/PropertyContext";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 export default function EditPropertyModal({
@@ -12,24 +12,42 @@ export default function EditPropertyModal({
   const { selectedProperty, setProperties, setSelectedProperty } =
     usePropertyContext();
 
-  // Estado inicial con las propiedades requeridas
   const [formData, setFormData] = useState({
-    title: selectedProperty?.title || "",
-    description: selectedProperty?.description || "",
-    price: selectedProperty?.price || "",
-    area: selectedProperty?.area || "",
-    address: selectedProperty?.address || "",
-    type: selectedProperty?.type || "apartment",
-    status: selectedProperty?.status || "sale",
-    isActive: selectedProperty?.isActive || true,
+    title: "",
+    description: "",
+    price: 0,
+    area: 0,
+    address: "",
+    type: "apartment",
+    status: "sale",
+    isActive: true,
     owner: {
-      name: selectedProperty?.owner?.name || "",
-      contact: selectedProperty?.owner?.contact || "",
+      name: "",
+      contact: "",
     },
   });
 
+  useEffect(() => {
+    if (selectedProperty) {
+      setFormData({
+        title: selectedProperty.title || "",
+        description: selectedProperty.description || "",
+        price: selectedProperty.price || 0,
+        area: selectedProperty.area || 0,
+        address: selectedProperty.address || "",
+        type: selectedProperty.type || "apartment",
+        status: selectedProperty.status || "sale",
+        isActive: selectedProperty.isActive || false,
+        owner: {
+          name: selectedProperty.owner?.name || "",
+          contact: selectedProperty.owner?.contact || "",
+        },
+      });
+    }
+  }, [selectedProperty]);
+
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
 
@@ -174,6 +192,65 @@ export default function EditPropertyModal({
               className="w-full border rounded-md p-2"
               required
             />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Tipo</label>
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2"
+              required
+            >
+              <option value="apartment">Apartamento</option>
+              <option value="house">Casa</option>
+              <option value="land">Terreno</option>
+              <option value="office">Oficina</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Estado</label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full border rounded-md p-2"
+              required
+            >
+              <option value="sale">Venta</option>
+              <option value="rent">Alquiler</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-2">
+              Disponibilidad
+            </label>
+            <div className="flex items-center space-x-4">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  name="isActive"
+                  checked={formData.isActive === true}
+                  onChange={() =>
+                    setFormData((prev) => ({ ...prev, isActive: true }))
+                  }
+                  className="mr-2"
+                />
+                Disponible
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  name="isActive"
+                  checked={formData.isActive === false}
+                  onChange={() =>
+                    setFormData((prev) => ({ ...prev, isActive: false }))
+                  }
+                  className="mr-2"
+                />
+                No disponible
+              </label>
+            </div>
           </div>
 
           <div>

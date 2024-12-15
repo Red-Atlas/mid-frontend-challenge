@@ -16,7 +16,6 @@ const typeTranslations: Record<string, string> = {
   house: "Casa",
   apartment: "Departamento",
   land: "Terreno",
-  // Agrega más tipos según sea necesario
 };
 
 const statusTranslations: Record<string, string> = {

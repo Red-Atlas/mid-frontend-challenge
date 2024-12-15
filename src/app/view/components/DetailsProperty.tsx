@@ -47,6 +47,7 @@ export default function DetailsProperty() {
             </h3>
             <h4 className="font-semibold">Área: {selectedProperty.area} m²</h4>
             <p className="mt-2 text-gray-700">{selectedProperty.address}</p>
+
             <div className="flex flex-row justify-between">
               <p className="text-sm text-gray-500 mt-2">
                 Publicado: {formatDate(selectedProperty.createdAt)}
@@ -58,6 +59,15 @@ export default function DetailsProperty() {
                 <Edit />
                 Editar propiedad
               </button>
+            </div>
+            <div className="mt-4 border-t pt-2">
+              <h3 className="font-semibold mb-2">Contacto</h3>
+              <p className="text-sm font-medium">
+                Nombre: {selectedProperty.owner.name}
+              </p>
+              <p className="text-sm font-medium">
+                Contacto: {selectedProperty.owner.contact}
+              </p>
             </div>
           </div>
         )}
