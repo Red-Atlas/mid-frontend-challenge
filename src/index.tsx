@@ -1,14 +1,13 @@
+import { ThemeProvider } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import MapLayout from './components/map-layout/map-layout';
-import './index.css';
-import store from './store';
 import { Provider } from 'react-redux';
-import PropertiesList from './components/properties-list/properties-list';
-import { ThemeProvider } from '@mui/material';
-import theme from './theme';
-import "./styles/fonts.css"; 
+import GlobalSnackbar from './components/global-snackbar-store/global-snackbar-store';
+import './index.css';
 import AppRoutes from './routes';
+import store from './store';
+import "./styles/fonts.css";
+import theme from './theme';
 
 
 const rootElement = document.getElementById('root');
@@ -18,6 +17,7 @@ if (rootElement) {
   root.render(
     <ThemeProvider theme={theme}>
       <Provider store={store}>
+      <GlobalSnackbar />
         <React.StrictMode>
          <AppRoutes/>
         </React.StrictMode>

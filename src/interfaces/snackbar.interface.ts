@@ -1,8 +1,8 @@
-type Severity = 'error' | 'success';
-
 export default interface SnacbkarProps {
     open: boolean;
     message: string;
-    severity: Severity
+    severity: Severity;
+    autoHideDuration: number,
 }
 
+type Severity = 'error' | 'success';

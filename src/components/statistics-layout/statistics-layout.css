@@ -1,0 +1,148 @@
+.statistics-layout {
+  position: relative;
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: 'AvenirNext';
+  height: 100vh
+}
+
+.chart-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px; 
+  justify-items: center; 
+  align-items: start; 
+}
+
+.chart {
+  text-align: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+  height: 350px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%; 
+  max-width: 500px;
+}
+
+.chart h3 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.statistics-layout canvas {
+  max-height: 280px;
+  margin: 0 auto; 
+}
+
+
+.fixed-button-statistics {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px; 
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'AvenirNext', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000; 
+}
+
+.fixed-button-statistics:hover {
+  background-color: #e64a19;
+  transform: scale(1.05); 
+}
+
+.fixed-button-statistics:active {
+  transform: scale(0.95); 
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8); 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; 
+}
+
+.loading-overlay p {
+  margin-top: 10px;
+  color: #333;
+  font-size: 1.1rem;
+  font-family: "AvenirNext";
+}
+
+@media (max-width: 1400px) {
+  .statistics-layout {
+    position: relative;
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'AvenirNext';
+    height: auto
+  }
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .chart-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .chart {
+    height: 350px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics-layout {
+    padding: 10px;
+    height: auto;
+  }
+  .statistics-layout canvas {
+    max-height: 300px;
+    margin: 0 auto; 
+  }
+
+  .chart-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .chart {
+    height: auto;
+    max-width: 100%;
+  }
+
+}

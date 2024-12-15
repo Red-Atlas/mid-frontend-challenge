@@ -1,27 +1,15 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useEffect, useRef, useState } from 'react';
-import './map-layout.css';
-
-import { useSelector } from 'react-redux';
-import SnackbarComponent from '../../components/snackbar/snackbar';
-import { Property } from '../../interfaces/properties.interface';
-import SnacbkarProps from '../../interfaces/snackbar.interface';
-import { RootState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
+import { showSnackbar } from '../../reducers/snackbarSlice';
+import { RootState } from '../../store';
+import './map-layout.css';
 
 function MapLayout() {
   const navigate = useNavigate();
-  const [snackbar, setSnackbar] = useState<SnacbkarProps>({
-    open: false,
-    message: '',
-    severity: 'success'
-  });
-  const [propertiesData, setProperties] = useState<Property[]>();
+  const dispatch = useDispatch();
   const [mapInstance, setMapInstance] = useState<mapboxgl.Map>();
   const { property } = useSelector((state: RootState) => state.properties);
   const [markers, setMarkers] = useState<mapboxgl.Marker[]>([]);
@@ -30,13 +18,12 @@ function MapLayout() {
     if (process.env.REACT_APP_MAPBOX_TOKEN) {
       mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
     } else {
-      setSnackbar({
-        open: true,
-        message: 'Mapbox token is missing',
+      dispatch(showSnackbar({
+        message: 'Token for Mapbox is Invalid',
         severity: 'error',
-      });
+      }));
     }
-  }, []);
+  }, [dispatch]);
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
@@ -67,35 +54,30 @@ function MapLayout() {
     setMarkers([]);
     const newMarkers: mapboxgl.Marker[] = [];
 
-      property.forEach((property) => {
-        const markerElement = document.createElement('div');
-        markerElement.className = 'custom-marker';
-        const marker = new mapboxgl.Marker({ element: markerElement })
-          .setLngLat([property.location.lng, property.location.lat])
-          .addTo(mapInstance!);
-  
-          marker.getElement().addEventListener('click', () => {
-            navigate(`/properties/${property.id}`);
-  
-          });
-  
-        newMarkers.push(marker);
-      });
-    
-    
+    property.forEach((property) => {
+      const markerElement = document.createElement('div');
+      markerElement.className = 'custom-marker';
+      const marker = new mapboxgl.Marker({ element: markerElement })
+        .setLngLat([property.location.lng, property.location.lat])
+        .addTo(mapInstance!);
 
-    setMarkers(newMarkers); 
+      marker.getElement().addEventListener('click', () => {
+        navigate(`/properties/${property.id}`);
+
+      });
+
+      newMarkers.push(marker);
+    });
+
+
+
+    setMarkers(newMarkers);
   };
 
 
 
 
   return <div className="map-container" ref={mapContainerRef}>
-    <SnackbarComponent
-      open={snackbar?.open}
-      message={snackbar?.message}
-      severity={snackbar?.severity}
-    />
   </div>;
 }
 

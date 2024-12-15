@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import propertiesSlice from './reducers/propertiesSlice';
+import snackbarSlice from './reducers/snackbarSlice';
 
 const rootReducer = combineReducers({
-  properties: propertiesSlice
+  properties: propertiesSlice,
+  snackbar: snackbarSlice,
 });
 
 const store = configureStore({
