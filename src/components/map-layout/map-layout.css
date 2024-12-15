@@ -1,0 +1,14 @@
+.map-container {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+  }
+
+  .custom-marker {
+    background-color: #ff4d4d; 
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8); 
+    cursor: pointer;
+  }
