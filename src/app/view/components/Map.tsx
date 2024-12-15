@@ -8,19 +8,18 @@ import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-// import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
+import markerIconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import L from "leaflet";
 
 interface MapProps {
   location: { lat: number; lng: number } | null; // Recibe location como prop
 }
 
-const defaultIcon = L.icon({
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIconRetina,
   iconUrl: markerIcon,
   shadowUrl: markerShadow,
-  iconAnchor: [12, 41], // Ajusta el punto de anclaje del ícono
 });
-L.Marker.prototype.options.icon = defaultIcon; // Configura el ícono predeterminado para todos los marcadores
 function UpdateMapCenter({
   location,
 }: {
