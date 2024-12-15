@@ -1,0 +1,103 @@
+.create-property__container {
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.create-property__presentation {
+  background-color: #d31216;
+  color: white;
+  padding: 120px 80px 40px;
+}
+
+.create-property__image {
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 32px;
+  margin-bottom: 15px;
+}
+
+.create-property__title {
+  font-size: 38px;
+  padding-bottom: 15px;
+}
+
+.create-property__subtitle {
+  font-size: 22px;
+}
+
+.create-property__form {
+  padding: 20px 80px;
+  background-color: #f7f7f7;
+  border-radius: 16px;
+  margin-top: 20px;
+}
+
+.create-property__form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-property__form-group label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #d31216;
+  margin-bottom: 8px;
+}
+
+.create-property__form-group input,
+.create-property__form-group select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.create-property__form-group input:focus,
+.create-property__form-group select:focus {
+  outline: none;
+  border-color: #d31216;
+  box-shadow: 0 0 4px rgba(211, 18, 22, 0.5);
+}
+
+.create-property__save-button {
+  background-color: #d31216;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-property__save-button:hover {
+  background-color: #a50e12;
+}
+
+.create-property__error {
+  padding-top: 5px;
+  color: red;
+}
+
+@media (max-width: 720px) {
+  .create-property__presentation {
+    padding: 120px 40px 40px;
+  }
+
+  .create-property__form {
+    padding: 20px 40px;
+  }
+
+  .create-property__title {
+    font-size: 32px;
+  }
+
+  .create-property__subtitle {
+    font-size: 19px;
+  }
+}

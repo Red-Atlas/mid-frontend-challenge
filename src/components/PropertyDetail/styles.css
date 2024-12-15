@@ -1,0 +1,129 @@
+.property-detail__container {
+  width: 100%;
+  background-color: #f7f7f7;
+}
+
+.property-detail__presentation {
+  background-color: #d31216;
+  color: white;
+  padding: 120px 80px 40px;
+}
+
+.property-detail__image {
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 32px;
+  margin-bottom: 15px;
+}
+
+.property-detail__bottom-side {
+  padding: 0 80px;
+  background-color: #f7f7f7;
+}
+
+.property-detail__description {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.property-detail__details,
+.property-detail__contact {
+  padding-top: 20px;
+}
+
+.property-detail__title {
+  font-size: 38px;
+  padding-bottom: 5px;
+}
+
+.property-detail__subtitle {
+  font-size: 22px;
+}
+
+.property-detail__details-title,
+.property-detail__contact-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #d31216;
+  padding: 20px 0;
+}
+
+.property-detail__details-item,
+.property-detail__contact-item {
+  padding: 8px 0;
+}
+
+.property-detail__details-item-title,
+.property-detail__contact-item-title {
+  font-size: 16px;
+  text-decoration: underline;
+  display: block;
+  font-weight: bold;
+  color: #d31216;
+  padding-bottom: 3px;
+}
+
+.property-detail__contact {
+  width: 300px;
+}
+
+.property-detail__edit-button {
+  background-color: #d31216;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 30px 0 50px;
+}
+
+.property-detail__save-button:hover {
+  background-color: #a50e12;
+}
+
+.property-detail__description-container {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.property-detail__description-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #d31216;
+  padding: 20px 0;
+}
+
+.property-detail__description-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+@media (max-width: 720px) {
+  .property-detail__presentation {
+    padding: 120px 40px 40px;
+  }
+
+  .property-detail__bottom-side {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 720px) {
+  .property-detail__title {
+    font-size: 32px;
+  }
+
+  .property-detail__subtitle {
+    font-size: 19px;
+  }
+}
