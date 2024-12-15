@@ -14,8 +14,7 @@ import L from "leaflet";
 interface MapProps {
   location: { lat: number; lng: number } | null; // Recibe location como prop
 }
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: markerIconRetina,
   iconUrl: markerIcon,
