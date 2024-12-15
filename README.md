@@ -1,142 +1,127 @@
-<<<<<<< HEAD
-# Front-End Challenge - Mid-Level 🚀
+# Mid-Frontend Challenge Agustin Policano
 
-## Descripción
-
-El objetivo de este desafío es crear una aplicación para listar, gestionar y localizar propiedades inmobiliarias. Este reto evaluará tus habilidades para consumir APIs, manejo de estado, integración de herramientas externas como mapas y aplicar buenas prácticas de desarrollo.
-
-¡Confía en tu talento y diviértete mientras lo haces! 🌟
+Este repositorio contiene dos aplicaciones:
+1. **API Service**: Una API personalizada creada con **Node.js**
+2. **Frontend con React**: Una aplicación **React** que consume la API y ofrece funcionalidades de filtros, ordenamiento, formularios y visualización de estadísticas.
 
 ---
 
-## Requisitos Técnicos
-
-- **Framework**: React + TypeScript.
-- **Estilos**: Tecnología a libre elección. Puedes usar frameworks o bibliotecas como:
-
-  - CSS puro o preprocesadores como SASS o LESS.
-  - CSS-in-JS (por ejemplo, Styled Components, Emotion).
-  - Frameworks de diseño (por ejemplo, Tailwind CSS, Material-UI, Chakra UI).
-  - Bootstrap o cualquier sistema de diseño que prefieras.
-
-  Valoramos si el diseño se adapta al estilo de Red Atlas (https://atlas.red/).
-
-- **Diseño Responsive**: Debe adaptarse correctamente a dispositivos móviles, tablets y desktops.
-- **Estado**: Implementar manejo de estado global (Context API, Redux Toolkit, etc.).
-- **Enrutamiento**: Implementar las rutas que consideres necesarias para los requisitos del proyecto.
-
-## Requisitos del Proyecto
-
-1. **Pantalla de Listado de Propiedades**:
-
-   - Mostrar una lista de propiedades con:
-     - Título.
-     - Imagen.
-     - Dirección.
-     - Tipo de propiedad (`Apartment`, `House`, etc.).
-     - Precio.
-     - Estado (`En venta`, `En alquiler`).
-     - Disponibilidad (`Activo`, `Inactivo`).
-     - Area
-     - Fecha de publicación
-   - Funcionalidades:
-     - **Búsqueda**: Filtrar propiedades por titulo o dirección.
-     - **Filtros**: Por tipo de propiedad y estado. Si decides implementar filtros avanzados (combinados), será considerado como un punto a favor 😉
-     - **Ordenar por precio** (ascendente/descendente).
-     - **Paginación**: Mostrar un número limitado de propiedades por página.
-
-2. **Vista de Detalle de Propiedad**:
-
-   - Al hacer click en una propiedad, abrir una pantalla que muestre todos los datos de la propiedad.
-   - Incluir botón para regresar al listado.
-
-3. **Mapa Interactivo**:
-
-   - Incluir un mapa en la pantalla principal que:
-     - Localice las propiedades en un mapa interactivo.
-     - Permita hacer click en un marcador para mostrar un resumen de la propiedad.
-   - Usar **Mapbox**, **Google Maps** o cualquier librería de mapas.
-
-4. **Formulario de Creación/Edición de Propiedades**:
-   - Permitir crear una nueva propiedad o editar una existente.
-   - Agregar validaciones para campos obligatorios como título, dirección, precio y tipo.
-   - Mostrar mensajes de error claros y accesibles.
-
-## Extras Opcionales ✨
-
-- **Optimización del mapa**:
-  - **Lazy Loading de Marcadores**: Cargar y mostrar solo las propiedades visibles en el viewport del mapa en lugar de precargar todos los datos.
-  - **Clusterización de Marcadores**: Agrupar marcadores cercanos para evitar la superposición y facilitar la navegación en áreas densas.
-  - **Actualización Dinámica**: Actualizar automáticamente los marcadores al cambiar el nivel de zoom o al desplazarse en el mapa.
-- Implementar gráficos con estadísticas (por ejemplo, número de propiedades por estado o tipo).
-- Manejo avanzado de errores (mostrar mensajes claros si la API falla).
-
-## API Fake
-
-La API estará disponible en:
-
-- **Base URL**: https://fake-api-listings.vercel.app/api-docs/
-- **Endpoints**:
-  - `GET /properties`: Lista de propiedades.
-  - `GET /properties/:id`: Detalles de una propiedad.
-  - `POST /properties`: Crear una propiedad.
-  - `PUT /properties/:id`: Editar una propiedad.
-  - `DELETE /properties/:id`: Eliminar una propiedad.
-
-**Nota:**
-
-Esta API es pública y compartida entre todos los candidatos. Para evitar problemas, realiza cambios solo en las propiedades que tú mismo crees. **Si deseas usar tu propia API, ¡será valorado!**
-
-En caso de que la API tenga problemas, proporcionamos un archivo JSON con datos de ejemplo que puedes utilizar localmente. Este archivo incluye un conjunto básico de propiedades para ayudarte a cumplir con los requisitos del proyecto.
-El archivo se encuentra disponible en este repositorio bajo el nombre `properties.json`.
-
-**Ejemplo de propiedad:**
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426614174000",
-  "title": "Moderna Casa Familiar",
-  "address": "Calle Secundaria 456",
-  "description": "Amplia y luminosa casa ideal para familias...",
-  "location": {
-    "lat": -34.6037,
-    "lng": -58.3816
-  },
-  "images": ["https://via.placeholder.com/150"],
-  "type": "house",
-  "status": "sale",
-  "isActive": true,
-  "price": 120000,
-  "area": 250,
-  "createdAt": "2024-05-15T10:00:00.000Z",
-  "updatedAt": "2024-11-20T15:45:00.000Z",
-  "owner": {
-    "name": "John Doe",
-    "contact": "johndoe@example.com"
-  }
-}
-```
-
-## Instrucciones de Entrega
-
-- Realiza un fork de este repositorio: `Red-Atlas/mid-frontend-challenge`.
-- Crea un branch con tu nombre completo en el formato: nombre-apellido.
-- Sube tu código al branch correspondiente.
-- Desplegar la aplicación en un servicio gratuito como **Vercel** o **Netlify**.
-
-- Incluye en el README del fork:
-  - instrucciones en el `README.md` para instalar y ejecutar la aplicación.
-  - El enlace al proyecto desplegado.
-  - Un resumen de tu solución (enfoque, desafíos, decisiones técnicas).
-  - Realiza un pull request a este repositorio.
-
-## Criterios de Evaluación
-
-1. **Funcionalidad**: Cumplimiento de los requisitos principales.
-2. **Código**: Limpieza, modularidad y buenas prácticas.
-3. **Diseño**: Interfaz funcional y clara.
-4. **Extras Opcionales**: Implementación correcta si decides incluirlos.
+## **Índice**
+- [Mid-Frontend Challenge Agustin Policano](#mid-frontend-challenge-agustin-policano)
+  - [**Índice**](#índice)
+  - [**Características del proyecto**](#características-del-proyecto)
+    - [**Backend - API Service**](#backend---api-service)
+    - [**Frontend - React**](#frontend---react)
+  - [**Instalación y ejecución**](#instalación-y-ejecución)
+    - [**Backend - API Service**](#backend---api-service-1)
+    - [**FrontEnd - React**](#frontend---react-1)
+  - [**Links al deploy**](#links-al-deploy)
+  - [**Resumen de la solución**](#resumen-de-la-solución)
+  - [**Desafíos y decisiones técnicas**](#desafíos-y-decisiones-técnicas)
+  - [**Fin del Readme**](#fin-del-readme)
 
 ---
 
-### 🚀 ¡Buena suerte!
+## **Características del proyecto**
+
+### **Backend - API Service**
+- Creación de una API RESTful con Node.js
+- Gestión de propiedades con filtros y ordenamiento (por precio, área, tipo, estado).
+- Variables de entorno para configuraciones sensibles.
+
+### **Frontend - React**
+- Interfaz de usuario utilizando **Material UI**.
+- Búsqueda y filtrado dinámico de propiedades.
+- Ordenamiento de resultados (ascendente/descendente).
+- Visualización de estadísticas con **Chart.js**.
+- Formularios de creación/edición con validaciones (React Hook Form).
+- Uso de **Redux** para controlar el estado de la aplicación
+- Diseño responsive con CSS y hooks (useMobile)
+
+---
+
+## **Instalación y ejecución**
+⚠️ **Requisito**: Versión de Node.js recomendada: `22.12.0` (Para evitar conflictos con dependencias).
+### **Backend - API Service**
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/AgustinPolicano/mid-frontend-challenge/tree/agustin-policano
+   cd /api-service 
+     ```
+2.   **Instalar dependencias**:
+   ```bash 
+       npm install
+   ```
+3. **Configurar variables de entorno**:
+   ```env
+   Crea un archivo .env en la carpeta de /api-service :
+   PORT=5000 (O el puerto que gustes)
+   EXTERNAL_API_URL = 'https://fake-api-listings.vercel.app/'
+     ```
+3.  **Ejecutar el servidor**:  
+    ```env
+     npm run dev
+     ```
+     
+Tu servicio ya deberia estar corriendo en el puerto seleccionado 🚀
+
+### **FrontEnd - React**
+1. **Asumiendo que clonaste el repositorio en el paso previo**:
+     ```env
+    En la raiz del proyecto ejecutar npm install
+     ```
+2. **Configurar variables de entorno**:
+      ```env
+    Crea un archivo .env en la carpeta raíz con la URL de la API:
+    REACT_APP_API=http://localhost:5000/api
+     ```
+3. **Ejecutar la aplicación**:
+    ```env
+    npm start
+    ```
+La aplicación estará disponible en http://localhost:3000.
+
+Con estos pasos deberias tener el proyecto inicializado, tanto el servicio como el front. 🚀
+
+---
+
+## **Links al deploy**
+- Front End React: https://challenge-red-atlas-front-end.vercel.app/
+- Api Service: https://api-service-red-atlas.vercel.app/api/
+---
+
+## **Resumen de la solución**
+- Decidi desde un primer momento hacer mi servicio custom ya que desligaria de realizar la lógica "pesada" en el front. El backend lo cree node.js aprovechando que podia también implementarle TS, fue un reto divertido ya que no tengo tanta experiencia en el desarrollo de servicios con Node.js (espero que no se note tanto 😂).
+- Agregué algunos filtros cruzados, como area, precio, estado y que todo pueda filtrarse al mismo tiempo. Aprovechando así el servicio custom que cree.
+- Implementé mapbox para el manejo del mapa. Tambien crei/creo que es mejor mostrar al usuario los marcadores
+de las propiedades que esta viendo en el momento, tal vez este errado pero sentia que era mejor visualmente y con menos carga en el servidor.
+- Para esto que menciono arriba use redux, se encargo de manejar el estado de las propiedades y aproveche para usar el snackbar de forma global también con Redux.
+- Use la libreria react-hooks-form para el manejo de los formularios.
+- Use Chart.js para mostrar las estadistícas de las propiedades, compara inactiva e activas, los precios, los estados y el tipo de propiedad.
+
+---
+
+## **Desafíos y decisiones técnicas**
+
+El mayor desafío en el proyecto fue la creacion de la **Api Custom** . Ya que es algo que no tenía muy visto sinceramente y me llevo muchas horas. Pero también hubo 3 decisiones importantes que creo que tome en este proyecto.
+
+1. **Separación del Backend y Frontend**  
+   - Opté por separar el **API Service** y la aplicación **React** en dos proyectos independientes.  
+   - Esta separación permite un desarrollo y despliegue modular, donde cada aplicación puede escalar o actualizarse de manera individual.
+
+2. **No mostrar todas las propiedades en el mapa**  
+    - Opté por mostrar las propiedades de forma dinámica en el mapa, sincronizando los marcadores con las     propiedades visibles en la lista según la paginación.  
+   - Aunque podría no ser lo esperado inicialmente, considero que esta implementación mejora significativamente la experiencia visual y el rendimiento.  
+   - Mostrar todas las propiedades en el mapa podría generar un exceso de marcadores, lo que saturaría la interfaz y afectaría negativamente la usabilidad y el rendimiento en dispositivos móviles. sino que muestra únicamente las 10 que se ven en la página actual del listado (para esto use **react-redux**) 
+   
+3. **Separar la lógica en los .tsx y crear hooks para manejar la misma**  
+   - Implementé una estructura modular separando la lógica de negocio y las funcionalidades reutilizables en hooks personalizados.  
+   - Esto permitió una mejor organización del código y facilitó la reutilización de funcionalidades comunes como la búsqueda, el filtrado y la paginación.  
+   - Además, utilicé **React Hook Form** para la validación eficiente de formularios de creación y edición de propiedades, reduciendo renderizados innecesarios y simplificando las validaciones tanto en el frontend como en el backend.
+
+---
+
+## **Fin del Readme**
+
+Espero que les guste mi desarrollo y mil gracias por la oportunidad. ¡Me divertí mucho haciéndolo! 🚀
+

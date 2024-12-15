@@ -93,7 +93,7 @@
   font-family: "AvenirNext";
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1300px) {
   .statistics-layout {
     position: relative;
     background-color: white;
