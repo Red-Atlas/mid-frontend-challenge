@@ -16,9 +16,6 @@ export const PropertyDetail: FC<PropertyDetailInterface> = ({ property }) => {
   const navigate = useNavigate()
   const zoomLevel = 13;
 
-  console.log(property);
-  
-
   return (
     <>
       <div className="property-detail__container">

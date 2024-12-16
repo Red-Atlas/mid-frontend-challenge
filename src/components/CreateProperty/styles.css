@@ -1,12 +1,16 @@
 .create-property__container {
   width: 100%;
   font-family: Arial, sans-serif;
+  margin: 0 auto;
 }
 
-.create-property__presentation {
+.create-property__presentation-container {
   background-color: #d31216;
+}
+.create-property__presentation {
   color: white;
   padding: 120px 80px 40px;
+  max-width: 1440px;
 }
 
 .create-property__image {

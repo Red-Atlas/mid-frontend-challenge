@@ -102,9 +102,11 @@ export const CreateProperty: FC<CreatePropertyInterface> = ({ onCreate }) => {
 
   return (
     <div className="create-property__container">
-      <div className="create-property__presentation">
-        <h1 className="create-property__title">Create New Property</h1>
-        <h3 className="create-property__subtitle">Fill in the property details below.</h3>
+      <div className="create-property__presentation-container">
+        <div className="create-property__presentation">
+          <h1 className="create-property__title">Create New Property</h1>
+          <h3 className="create-property__subtitle">Fill in the property details below.</h3>
+        </div>
       </div> 
       <div className="create-property__form">
         <div className="create-property__form-group">
