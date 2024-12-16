@@ -100,7 +100,7 @@ export default function Home() {
     <div className="relative w-full h-screen flex">
       <div
         className={`min-w-auto max-w-[700px] max-h-[900px] max-sm:h-[700px] max-sm:w-full absolute z-[10] bg-white rounded-lg m-20 max-sm:m-0 max-sm:bottom-0 py-3 shadow-lg transition-transform duration-300 ${
-          principalPanelVisible ? "translate-y-0" : "max-sm:translate-y-full"
+          principalPanelVisible ? "translate-y-0" : "max-sm:translate-y-[600px]"
         }`}
       >
         <button
