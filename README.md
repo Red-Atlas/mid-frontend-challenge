@@ -1,6 +1,8 @@
 --Instalacion del proyecto:
 1.Clonar el repositorio
-2.Ejcutar el comando npm run dev
+2.Ejcutar el comando npm install para instalar dependecias
+3.Ejecutar comando npm run dev
+4.Ingresar a http://localhost:3000
 
 --A tener en cuenta para uso local:
 Al principio la API tiraba error de CORS y lo solucione con la extension de chrome. Pero parece que el problema ya fue solucionado y no tira mas error.
