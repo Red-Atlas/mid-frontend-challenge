@@ -1,143 +1,93 @@
 # Front-End Challenge - Mid-Level 🚀
 
-## Descripción
+## Prerrequisitos
 
-El objetivo de este desafío es crear una aplicación para listar, gestionar y localizar propiedades inmobiliarias. Este reto evaluará tus habilidades para consumir APIs, manejo de estado, integración de herramientas externas como mapas y aplicar buenas prácticas de desarrollo.
+Tener instalados Node y NPM:
 
-¡Confía en tu talento y diviértete mientras lo haces! 🌟
+- [Node.js](https://nodejs.org/es/download/)
+- [npm](https://www.npmjs.com/get-npm) (Node Package Manager)
 
----
+## Tecnologías Utilizadas
 
-## Requisitos Técnicos
+Este proyecto fue desarrollado utilizando las siguientes tecnologías:
 
-- **Framework**: React + TypeScript.
-- **Estilos**: Tecnología a libre elección. Puedes usar frameworks o bibliotecas como:
+- **Redux Toolkit**: Para la gestión del estado global de la aplicación.
+- **React-Redux**: Para integrar Redux con React.
+- **Mapbox**: Servicio para crear mapas interactivos.
+- **React Router**: Para la navegación entre diferentes vistas de la aplicación.
+- **React Hook Form**: Para la creación de formularios con validaciones.
+- **Date-fns**: Biblioteca para el manejo de fechas.
+- **Feather Icons**: Librería para usar íconos vectoriales.
 
-  - CSS puro o preprocesadores como SASS o LESS.
-  - CSS-in-JS (por ejemplo, Styled Components, Emotion).
-  - Frameworks de diseño (por ejemplo, Tailwind CSS, Material-UI, Chakra UI).
-  - Bootstrap o cualquier sistema de diseño que prefieras.
+## Funcionalidades de la Aplicación
 
-  Valoramos si el diseño se adapta al estilo de Red Atlas (https://atlas.red/).
+- [x] Mostrar una lista de propiedades
+- [x] Vista de detalle de las propiedades
+- [x] Mapa interactivo
+- [x] Formulario de creación de propiedades con validaciones
+- [x] Paginación de propiedades
 
-- **Diseño Responsive**: Debe adaptarse correctamente a dispositivos móviles, tablets y desktops.
-- **Estado**: Implementar manejo de estado global (Context API, Redux Toolkit, etc.).
-- **Enrutamiento**: Implementar las rutas que consideres necesarias para los requisitos del proyecto.
+## API custom
+Debido a limitaciones del filtrado y para evitar cargar al front-end con solicitudes demasiado complejas, decidí crear una API desde cero utilizando **Node.js** y **Express.js**. Esta API está diseñada para manejar peticiones más complejas y proporcionar una mejor experiencia de usuario. La base de datos utilizada es no relacional, gestionada con **MongoDB** y **Mongoose**, y está desplegada en **Mongo Atlas**.
 
-## Requisitos del Proyecto
+- Base URL: https://fake-api-listings.vercel.app/api-docs/
+- Endpoints:
+  - GET /properties: Lista de propiedades.
+    - Query parameters:
+      - `sort`: Ordena las propiedades por `date`(predeterminado), `price_desc` o `price_asc`.
+      - `page`: Número de página para la paginación (predeterminado: 1).
+      - `limit`: Número de propiedades por página (predeterminado: 10).
+  - GET /properties/:id: Detalles de una propiedad.
+  - GET /properties/search Detalles de una propiedad.
+    - Query parameters:
+      - `query`: Parámetro de búsqueda.
+      - `page`: Número de página para la paginación (predeterminado: 1).
+      - `limit`: Número de propiedades por página (predeterminado: 10).
+  - POST /properties: Crear una propiedad.
+  - PUT /properties/:id: Editar una propiedad.
+  - DELETE /properties/:id: Eliminar una propiedad.
 
-1. **Pantalla de Listado de Propiedades**:
+Para más detalles de la API, consulta el repositorio de la API aquí: [API Red Atlas](https://github.com/hbaravalle/api-red-atlas).
 
-   - Mostrar una lista de propiedades con:
-     - Título.
-     - Imagen.
-     - Dirección.
-     - Tipo de propiedad (`Apartment`, `House`, etc.).
-     - Precio.
-     - Estado (`En venta`, `En alquiler`).
-     - Disponibilidad (`Activo`, `Inactivo`).
-     - Area
-     - Fecha de publicación
-   - Funcionalidades:
-     - **Búsqueda**: Filtrar propiedades por titulo o dirección.
-     - **Filtros**: Por tipo de propiedad y estado. Si decides implementar filtros avanzados (combinados), será considerado como un punto a favor 😉
-     - **Ordenar por precio** (ascendente/descendente).
-     - **Paginación**: Mostrar un número limitado de propiedades por página.
+## Instrucciones para instalar y ejecutar la aplicación
 
-2. **Vista de Detalle de Propiedad**:
+### 1. Clonar el repositorio
 
-   - Al hacer click en una propiedad, abrir una pantalla que muestre todos los datos de la propiedad.
-   - Incluir botón para regresar al listado.
-
-3. **Mapa Interactivo**:
-
-   - Incluir un mapa en la pantalla principal que:
-     - Localice las propiedades en un mapa interactivo.
-     - Permita hacer click en un marcador para mostrar un resumen de la propiedad.
-   - Usar **Mapbox**, **Google Maps** o cualquier librería de mapas.
-
-4. **Formulario de Creación/Edición de Propiedades**:
-   - Permitir crear una nueva propiedad o editar una existente.
-   - Agregar validaciones para campos obligatorios como título, dirección, precio y tipo.
-   - Mostrar mensajes de error claros y accesibles.
-
-## Extras Opcionales ✨
-
-- **Optimización del mapa**:
-  - **Lazy Loading de Marcadores**: Cargar y mostrar solo las propiedades visibles en el viewport del mapa en lugar de precargar todos los datos.
-  - **Clusterización de Marcadores**: Agrupar marcadores cercanos para evitar la superposición y facilitar la navegación en áreas densas.
-  - **Actualización Dinámica**: Actualizar automáticamente los marcadores al cambiar el nivel de zoom o al desplazarse en el mapa.
-- Implementar gráficos con estadísticas (por ejemplo, número de propiedades por estado o tipo).
-- Manejo avanzado de errores (mostrar mensajes claros si la API falla).
-
-## API Fake
-
-La API estará disponible en:
-
-- **Base URL**: https://fake-api-listings.vercel.app/api-docs/
-- **Endpoints**:
-  - `GET /properties`: Lista de propiedades.
-  - `GET /properties/:id`: Detalles de una propiedad.
-  - `POST /properties`: Crear una propiedad.
-  - `PUT /properties/:id`: Editar una propiedad.
-  - `DELETE /properties/:id`: Eliminar una propiedad.
-
-**Nota:**
-
-Esta API es pública y compartida entre todos los candidatos. Para evitar problemas, realiza cambios solo en las propiedades que tú mismo crees. **Si deseas usar tu propia API, ¡será valorado!**
-
-En caso de que la API tenga problemas, proporcionamos un archivo JSON con datos de ejemplo que puedes utilizar localmente. Este archivo incluye un conjunto básico de propiedades para ayudarte a cumplir con los requisitos del proyecto.
-El archivo se encuentra disponible en este repositorio bajo el nombre `properties.json`.
-
-**Ejemplo de propiedad:**
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426614174000",
-  "title": "Moderna Casa Familiar",
-  "address": "Calle Secundaria 456",
-  "description": "Amplia y luminosa casa ideal para familias...",
-  "location": {
-    "lat": -34.6037,
-    "lng": -58.3816
-  },
-  "images": ["https://via.placeholder.com/150"],
-  "type": "house",
-  "status": "sale",
-  "isActive": true,
-  "price": 120000,
-  "area": 250,
-  "createdAt": "2024-05-15T10:00:00.000Z",
-  "updatedAt": "2024-11-20T15:45:00.000Z",
-  "owner": {
-    "name": "John Doe",
-    "contact": "johndoe@example.com"
-  }
-}
+```bash
+git clone --branch hernan-baravalle https://github.com/hbaravalle/mid-frontend-challenge
+cd frontend-haciendola-challenge
 ```
 
-## Instrucciones de Entrega
+### 2. Instalar dependencias
 
-- Realiza un fork de este repositorio: `Red-Atlas/mid-frontend-challenge`.
-- Crea un branch con tu nombre completo en el formato: nombre-apellido.
-- Sube tu código al branch correspondiente.
-- Desplegar la aplicación en un servicio gratuito como **Vercel** o **Netlify**.
+Habiendo navegado hacia el directorio del proyecto, ejecutar:
 
-- Incluye en el README del fork:
-  - instrucciones en el `README.md` para instalar y ejecutar la aplicación.
-  - El enlace al proyecto desplegado.
-  - Un resumen de tu solución (enfoque, desafíos, decisiones técnicas).
-  - Realiza un pull request a este repositorio.
+```bash
+npm install
+```
 
-## Criterios de Evaluación
+### 3. Variables de entorno
 
-1. **Funcionalidad**: Cumplimiento de los requisitos principales.
-2. **Código**: Limpieza, modularidad y buenas prácticas.
-3. **Diseño**: Interfaz funcional y clara.
-4. **Extras Opcionales**: Implementación correcta si decides incluirlos.
+A partir del archivo `.env.example`, crear un nuevo archivo que contenga la siguiente variable de entorno y su valor correspondiente:
+```bash
+VITE_MAPBOX_TOKEN=
+```
+
+### 4. Iniciar la aplicación
+
+Ejecuta el siguiente comando para iniciar la aplicación en modo de desarrollo:
+
+```bash
+npm run dev
+```
+
+## Mejoras pendientes
+
+- [ ] Formulario de edición
+- [ ] Filtro de propiedades avanzado
+- [ ] Mejor organización de tipos
+- [ ] customHooks para evitar repetir bloques de código
 
 ---
 
-### 🚀 ¡Buena suerte!
-
-Si tienes dudas, no dudes en preguntar. 😊
+¡Gracias por la oportunidad!
