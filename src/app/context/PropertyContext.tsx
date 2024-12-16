@@ -60,6 +60,8 @@ interface PropertyContextProps {
   setIsSelectingLocation: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  principalPanelVisible: boolean;
+  setPrincipalPanelVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PropertyContext = createContext<PropertyContextProps | undefined>(
@@ -90,6 +92,8 @@ export const PropertyProvider = ({ children }: { children: ReactNode }) => {
   const [isSelectingLocation, setIsSelectingLocation] =
     useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [principalPanelVisible, setPrincipalPanelVisible] =
+    useState<boolean>(false);
 
   return (
     <PropertyContext.Provider
@@ -122,6 +126,8 @@ export const PropertyProvider = ({ children }: { children: ReactNode }) => {
         setIsSelectingLocation,
         isModalOpen,
         setIsModalOpen,
+        principalPanelVisible,
+        setPrincipalPanelVisible,
       }}
     >
       {children}

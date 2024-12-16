@@ -57,7 +57,7 @@ function UpdateMapCenter({
           [location.lat, location.lng],
         ],
         {
-          paddingTopLeft: [400, 0],
+          // paddingTopLeft: [400, 0],
           maxZoom: 17,
         }
       );

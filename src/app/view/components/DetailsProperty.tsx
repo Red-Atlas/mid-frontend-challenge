@@ -15,9 +15,9 @@ export default function DetailsProperty() {
   return (
     <>
       <div
-        className={`fixed  right-0 top-0 rounded-l-lg mt-8 z-20 bg-gray-100 shadow-lg transition-transform duration-300 ${
+        className={`fixed max-sm:max-w-[350px] right-0 top-0 rounded-l-lg mt-8 z-20 bg-gray-100 shadow-lg transition-transform duration-300 ${
           isPanelVisible ? "translate-x-0" : "translate-x-full"
-        }`}
+        } max-sm:${!isPanelVisible ? "translate-x-0" : "translate-x-full"}`}
         style={{ width: "400px" }}
       >
         {selectedProperty && (

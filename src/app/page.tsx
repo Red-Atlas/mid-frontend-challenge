@@ -11,6 +11,8 @@ import Location from "./view/components/Icons/Location";
 import SectionMap from "./view/components/SectionMap";
 import formatDate from "./view/utils/formatDate";
 import DetailsProperty from "./view/components/DetailsProperty";
+import ArrowTop from "./view/components/Icons/ArrowTop";
+import ArrowBottom from "./view/components/Icons/ArrowBottom";
 
 const typeTranslations: Record<string, string> = {
   house: "Casa",
@@ -37,6 +39,8 @@ export default function Home() {
     setTotalPages,
     setSelectedProperty,
     setIsPanelVisible,
+    principalPanelVisible,
+    setPrincipalPanelVisible,
   } = usePropertyContext();
 
   const propertiesPerPage = 20;
@@ -94,17 +98,30 @@ export default function Home() {
 
   return (
     <div className="relative w-full h-screen flex">
-      <div className="min-w-auto max-w-[700px] max-h-[900px] absolute z-[10] bg-white rounded-lg m-20 py-3 shadow-lg">
+      <div
+        className={`min-w-auto max-w-[700px] max-h-[900px] max-sm:h-[700px] max-sm:w-full absolute z-[10] bg-white rounded-lg m-20 max-sm:m-0 max-sm:bottom-0 py-3 shadow-lg transition-transform duration-300 ${
+          principalPanelVisible ? "translate-y-0" : "max-sm:translate-y-full"
+        }`}
+      >
+        <button
+          className="sm:hidden absolute left-[170px] top-[-36px] transform bg-blue-500 text-white py-2 px-8 rounded-t-lg"
+          onClick={() => setPrincipalPanelVisible(!principalPanelVisible)}
+        >
+          {principalPanelVisible ? <ArrowBottom /> : <ArrowTop />}
+        </button>
         <h1 className="text-center font-bold mb-2">Propiedades</h1>
         <Filters />
-        <div className="custom-scroll p-4 h-[600px]">
+        <div className="custom-scroll p-4 h-[600px] max-sm:h-[440px]">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 ">
             {filteredProperties.length > 0 ? (
               filteredProperties.map((property) => (
                 <div
                   key={property?.id}
                   className="w-full bg-gray-100 rounded-md  shadow-md cursor-pointer hover:scale-105 transition ease-in-out duration-200"
-                  onClick={() => handleCardClick(property)}
+                  onClick={() => {
+                    handleCardClick(property);
+                    setPrincipalPanelVisible(false);
+                  }}
                 >
                   <div className="relative">
                     <div className="absolute px-2 m-2 bg-blue-200 rounded-2xl">
