@@ -1,143 +1,32 @@
-# Front-End Challenge - Mid-Level 🚀
+## Mid Frontend Challenge - Nicolás Colombo
 
-## Descripción
+# Tecnologías Utilizadas
+- React.js
+- Vite.js
 
-El objetivo de este desafío es crear una aplicación para listar, gestionar y localizar propiedades inmobiliarias. Este reto evaluará tus habilidades para consumir APIs, manejo de estado, integración de herramientas externas como mapas y aplicar buenas prácticas de desarrollo.
+# Pasos para ejecutar la aplicación
 
-¡Confía en tu talento y diviértete mientras lo haces! 🌟
+1. Ejecutar el comando: `npm install`.
+2. Ejecutar el comando: `npm run dev`.
 
----
+# Enlace al proyecto
 
-## Requisitos Técnicos
+[https://red-atlas-challenge-ncolombo.vercel.app/](https://red-atlas-challenge-ncolombo.vercel.app/)
 
-- **Framework**: React + TypeScript.
-- **Estilos**: Tecnología a libre elección. Puedes usar frameworks o bibliotecas como:
+# Resumen de mi solución
 
-  - CSS puro o preprocesadores como SASS o LESS.
-  - CSS-in-JS (por ejemplo, Styled Components, Emotion).
-  - Frameworks de diseño (por ejemplo, Tailwind CSS, Material-UI, Chakra UI).
-  - Bootstrap o cualquier sistema de diseño que prefieras.
+Disfruté mucho haciendo este challenge. Para empezar, primero pensé en cómo sería la UI. Como se trata de una aplicación inmobiliaria, me centré en que las tarjetas con la información de las propiedades fueran lo más visibles y claras posible, ya que es lo que el usuario verá. También me aseguré de que los filtros fueran claros y de opción múltiple, ya que esto ahorra al usuario tener que aplicar filtros múltiples veces. Asimismo, realicé los formularios de creación y edición, además de los mapas (general y por propiedad). 
 
-  Valoramos si el diseño se adapta al estilo de Red Atlas (https://atlas.red/).
+En cuanto a lo técnico, me enfoqué en componentizar lo más posible, separando páginas y componentes individuales, creando interfaces reutilizables y utilizando CSS puro para un mejor control de los estilos.
 
-- **Diseño Responsive**: Debe adaptarse correctamente a dispositivos móviles, tablets y desktops.
-- **Estado**: Implementar manejo de estado global (Context API, Redux Toolkit, etc.).
-- **Enrutamiento**: Implementar las rutas que consideres necesarias para los requisitos del proyecto.
+Un desafío que tuve fue crear el componente de mapa con todos los requerimientos. Tuve que investigar posibles soluciones y me decanté por usar Leaflet, que es de código abierto y tiene muchas funcionalidades. Además, me aseguré de que funcionara en base a las propiedades filtradas, también considerando las propiedades creadas (que manejan la latitud y longitud de manera dinámica, utilizando la localización proporcionada al componente y transformándola en coordenadas).
 
-## Requisitos del Proyecto
+También cabe mencionar que utilicé como estado principal el archivo `properties.json` debido a un problema de CORS con la API que nos proporcionaron. Sin embargo, dejé la implementación en el servicio.
 
-1. **Pantalla de Listado de Propiedades**:
+# Extras Adicionales
 
-   - Mostrar una lista de propiedades con:
-     - Título.
-     - Imagen.
-     - Dirección.
-     - Tipo de propiedad (`Apartment`, `House`, etc.).
-     - Precio.
-     - Estado (`En venta`, `En alquiler`).
-     - Disponibilidad (`Activo`, `Inactivo`).
-     - Area
-     - Fecha de publicación
-   - Funcionalidades:
-     - **Búsqueda**: Filtrar propiedades por titulo o dirección.
-     - **Filtros**: Por tipo de propiedad y estado. Si decides implementar filtros avanzados (combinados), será considerado como un punto a favor 😉
-     - **Ordenar por precio** (ascendente/descendente).
-     - **Paginación**: Mostrar un número limitado de propiedades por página.
+- Utilicé Local Storage para persistir la información nueva.
+- Me aseguré de que las propiedades en el mapa se carguen a medida que se visualicen en el mapa.
+- Como mencioné antes, las localizaciones de las nuevas propiedades que se creen serán en base a "Location Name", asignando coordenadas al componente de manera dinámica.
 
-2. **Vista de Detalle de Propiedad**:
-
-   - Al hacer click en una propiedad, abrir una pantalla que muestre todos los datos de la propiedad.
-   - Incluir botón para regresar al listado.
-
-3. **Mapa Interactivo**:
-
-   - Incluir un mapa en la pantalla principal que:
-     - Localice las propiedades en un mapa interactivo.
-     - Permita hacer click en un marcador para mostrar un resumen de la propiedad.
-   - Usar **Mapbox**, **Google Maps** o cualquier librería de mapas.
-
-4. **Formulario de Creación/Edición de Propiedades**:
-   - Permitir crear una nueva propiedad o editar una existente.
-   - Agregar validaciones para campos obligatorios como título, dirección, precio y tipo.
-   - Mostrar mensajes de error claros y accesibles.
-
-## Extras Opcionales ✨
-
-- **Optimización del mapa**:
-  - **Lazy Loading de Marcadores**: Cargar y mostrar solo las propiedades visibles en el viewport del mapa en lugar de precargar todos los datos.
-  - **Clusterización de Marcadores**: Agrupar marcadores cercanos para evitar la superposición y facilitar la navegación en áreas densas.
-  - **Actualización Dinámica**: Actualizar automáticamente los marcadores al cambiar el nivel de zoom o al desplazarse en el mapa.
-- Implementar gráficos con estadísticas (por ejemplo, número de propiedades por estado o tipo).
-- Manejo avanzado de errores (mostrar mensajes claros si la API falla).
-
-## API Fake
-
-La API estará disponible en:
-
-- **Base URL**: https://fake-api-listings.vercel.app/api-docs/
-- **Endpoints**:
-  - `GET /properties`: Lista de propiedades.
-  - `GET /properties/:id`: Detalles de una propiedad.
-  - `POST /properties`: Crear una propiedad.
-  - `PUT /properties/:id`: Editar una propiedad.
-  - `DELETE /properties/:id`: Eliminar una propiedad.
-
-**Nota:**
-
-Esta API es pública y compartida entre todos los candidatos. Para evitar problemas, realiza cambios solo en las propiedades que tú mismo crees. **Si deseas usar tu propia API, ¡será valorado!**
-
-En caso de que la API tenga problemas, proporcionamos un archivo JSON con datos de ejemplo que puedes utilizar localmente. Este archivo incluye un conjunto básico de propiedades para ayudarte a cumplir con los requisitos del proyecto.
-El archivo se encuentra disponible en este repositorio bajo el nombre `properties.json`.
-
-**Ejemplo de propiedad:**
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426614174000",
-  "title": "Moderna Casa Familiar",
-  "address": "Calle Secundaria 456",
-  "description": "Amplia y luminosa casa ideal para familias...",
-  "location": {
-    "lat": -34.6037,
-    "lng": -58.3816
-  },
-  "images": ["https://via.placeholder.com/150"],
-  "type": "house",
-  "status": "sale",
-  "isActive": true,
-  "price": 120000,
-  "area": 250,
-  "createdAt": "2024-05-15T10:00:00.000Z",
-  "updatedAt": "2024-11-20T15:45:00.000Z",
-  "owner": {
-    "name": "John Doe",
-    "contact": "johndoe@example.com"
-  }
-}
-```
-
-## Instrucciones de Entrega
-
-- Realiza un fork de este repositorio: `Red-Atlas/mid-frontend-challenge`.
-- Crea un branch con tu nombre completo en el formato: nombre-apellido.
-- Sube tu código al branch correspondiente.
-- Desplegar la aplicación en un servicio gratuito como **Vercel** o **Netlify**.
-
-- Incluye en el README del fork:
-  - instrucciones en el `README.md` para instalar y ejecutar la aplicación.
-  - El enlace al proyecto desplegado.
-  - Un resumen de tu solución (enfoque, desafíos, decisiones técnicas).
-  - Realiza un pull request a este repositorio.
-
-## Criterios de Evaluación
-
-1. **Funcionalidad**: Cumplimiento de los requisitos principales.
-2. **Código**: Limpieza, modularidad y buenas prácticas.
-3. **Diseño**: Interfaz funcional y clara.
-4. **Extras Opcionales**: Implementación correcta si decides incluirlos.
-
----
-
-### 🚀 ¡Buena suerte!
-
-Si tienes dudas, no dudes en preguntar. 😊
+Esta fue mi solución al challenge. ¡Espero que les guste!

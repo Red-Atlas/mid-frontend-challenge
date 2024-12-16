@@ -1,0 +1,94 @@
+.property-card__container {
+  width: 350px;
+  height: 850px;
+  border: 2px solid black;
+  display: flex;
+  border-radius: 32px;
+  overflow: hidden;
+  flex-direction: column;
+  cursor: pointer;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.property-card__image-container {
+  display: block;
+  height: 300px;
+  width: 100%;
+}
+
+.property-card__description {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.property-card__image-container {
+  background-position: 50%;
+  background-size: cover;
+}
+
+.property-card__upper-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
+.property-card__bottom-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid grey;
+}
+
+.property-card__type {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+.property-card__title {
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  color: #d31216;
+}
+
+.property-card__item-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.property-card__item {
+  font-size: 16px;
+}
+
+.property-card__price-title {
+  font-size: 20px;
+}
+
+.property-card__price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

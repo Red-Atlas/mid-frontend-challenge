@@ -1,0 +1,124 @@
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar__input {
+  flex: 1 1 100%;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+}
+
+.search-bar__menus {
+  display: flex;
+  gap: 16px;
+}
+
+.search-bar__menu {
+  position: relative;
+}
+
+.search-bar__menu__toggle {
+  background-color: #d31216;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 130px;
+}
+
+.search-bar__menu-content {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+  width: 130px;
+}
+
+.search-bar__menu-content label {
+  font-size: 14px;
+}
+
+.search-bar__menu-content label input{
+  margin-right: 5px;
+}
+
+.search-bar__menus__wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-bar__select {
+  width: 130px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  background-color: #fff;
+  color: #333;
+}
+
+.search-bar__right-side {
+  display: flex;
+  gap: 16px;
+}
+
+.search-bar__button {
+  width: 130px;
+  padding: 10px 16px;
+  background-color: #d31216;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar__button:hover {
+  background-color: #a10e12;
+}
+
+.search-bar__button:active {
+  background-color: #700a0d;
+}
+
+@media (max-width: 720px) {
+  .search-bar__menus__wrapper {
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar__input::placeholder {
+    font-size: 12px;
+  }
+}
